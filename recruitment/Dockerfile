@@ -4,6 +4,13 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y \
+        nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /src
 COPY ["recruitment/recruitment.csproj", "recruitment/"]
 RUN dotnet restore "recruitment/recruitment.csproj"

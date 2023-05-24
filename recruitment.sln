@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recruitment", "recruitment\recruitment.csproj", "{5E1927BE-92EA-4824-98DC-57B4AE0B4C71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recruitment", "recruitment\recruitment.csproj", "{0BC3012E-D2C2-4D36-9B4B-A904FEA97277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5E1927BE-92EA-4824-98DC-57B4AE0B4C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E1927BE-92EA-4824-98DC-57B4AE0B4C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E1927BE-92EA-4824-98DC-57B4AE0B4C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E1927BE-92EA-4824-98DC-57B4AE0B4C71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BC3012E-D2C2-4D36-9B4B-A904FEA97277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BC3012E-D2C2-4D36-9B4B-A904FEA97277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BC3012E-D2C2-4D36-9B4B-A904FEA97277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BC3012E-D2C2-4D36-9B4B-A904FEA97277}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
