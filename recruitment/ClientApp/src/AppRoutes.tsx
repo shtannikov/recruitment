@@ -2,15 +2,27 @@ import ApiAuthorzationRoutes from './components/api-authorization/ApiAuthorizati
 import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
+import {RecruitmentFunnel} from "./components/RecruitmentFunnel";
 
-const AppRoutes = [
+export interface AppRoute {
+  element: JSX.Element;
+  path?: string;
+  index?: boolean;
+  requireAuth?: boolean;
+}
+
+const AppRoutes : AppRoute[] = [
   {
     index: true,
-    element: <Home />
+    element: <RecruitmentFunnel />
   },
   {
     path: '/counter',
     element: <Counter />
+  },
+  {
+    path: '/home',
+    element: <Home />
   },
   {
     path: '/fetch-data',
