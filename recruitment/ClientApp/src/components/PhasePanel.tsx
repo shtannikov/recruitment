@@ -42,7 +42,7 @@ export const PhasePanel: FC<PhasePanelProps> = ({ index, hidden }) => {
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
         >
-            <Box sx={{ p: 3 }}>
+            <Box sx={{ paddingLeft: 12, paddingTop: 3 }}>
                 <CandidateList candidates={candidates}/>
             </Box>
         </div>
