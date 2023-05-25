@@ -2,7 +2,7 @@ import React, {FC, ReactNode} from 'react';
 import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
 import {Grid} from "@mui/material";
-import {Sidebar} from "./Sidebar";
+import {Sidebar} from "../sidebar/Sidebar";
 
 export type LayoutProps = {
     children: ReactNode;

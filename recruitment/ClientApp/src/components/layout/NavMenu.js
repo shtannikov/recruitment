@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { LoginMenu } from './api-authorization/LoginMenu';
+import { LoginMenu } from '../authorization/LoginMenu';
 import './NavMenu.css';
 
 export class NavMenu extends Component {
