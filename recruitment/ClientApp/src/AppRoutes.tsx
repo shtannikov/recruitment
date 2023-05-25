@@ -3,6 +3,7 @@ import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import {RecruitmentFunnel} from "./components/RecruitmentFunnel";
+import {Candidate} from "./components/Candidate";
 
 export interface AppRoute {
   element: JSX.Element;
@@ -15,6 +16,10 @@ const AppRoutes : AppRoute[] = [
   {
     index: true,
     element: <RecruitmentFunnel />
+  },
+  {
+    path: '/candidate/:id',
+    element: <Candidate />
   },
   {
     path: '/counter',

@@ -1,28 +1,28 @@
-import {FC, useMemo} from "react";
+import {FC} from "react";
 import Box from "@mui/material/Box";
 import {Candidate, CandidateList} from "./CandidateList";
 import * as React from "react";
 
 
-function createCandidate(fullname: string, phaseDuration: number) : Candidate {
-    return { fullname, phaseDuration };
+function createCandidate(id: number, fullname: string, phaseDuration: number) : Candidate {
+    return { id, fullname, phaseDuration };
 }
 
 const candidatesPerPhase: Candidate[][] = [
     [
-        createCandidate('Штанников Евгений', 15),
-        createCandidate('Родимов Кирилл', 6),
-        createCandidate('Кузмичева Марина', 1),
+        createCandidate(1,'Штанников Евгений', 15),
+        createCandidate(2,'Родимов Кирилл', 6),
+        createCandidate(3,'Кузмичева Марина', 1),
     ],
     [
-        createCandidate('Кравцов Павел', 9),
-        createCandidate('Мисюрев Роман', 7),
-        createCandidate('Филатов Вячесла', 3),
+        createCandidate(4,'Кравцов Павел', 9),
+        createCandidate(5,'Мисюрев Роман', 7),
+        createCandidate(6,'Филатов Вячесла', 3),
     ],
     [
-        createCandidate('Прудников Никита', 8),
-        createCandidate('Тарасенко Сергей', 4),
-        createCandidate('Андрейчук Николай', 2),
+        createCandidate(7,'Прудников Никита', 8),
+        createCandidate(8,'Тарасенко Сергей', 4),
+        createCandidate(9,'Андрейчук Николай', 2),
     ],
 ];
 

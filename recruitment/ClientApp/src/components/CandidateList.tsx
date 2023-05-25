@@ -6,9 +6,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Link from '@mui/material/Link';
 import {FC} from "react";
 
 export interface Candidate {
+    id: number;
     fullname: string;
     phaseDuration: number;
 }
@@ -30,7 +32,9 @@ export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
-                                {candidate.fullname}
+                                <Link href={`/candidate/${candidate.id}`} underline="hover">
+                                    {candidate.fullname}
+                                </Link>
                             </TableCell>
                             <TableCell align="right">{candidate.phaseDuration}</TableCell>
                         </TableRow>
