@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, {FC, ReactNode} from 'react';
 import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
 import {Grid} from "@mui/material";
 import {Sidebar} from "./Sidebar";
 
-export class Layout extends Component {
-  static displayName = Layout.name;
+export type LayoutProps = {
+    children: ReactNode;
+};
 
-  render() {
+export const Layout: FC<LayoutProps> = ({ children }) => {
     return (
       <div>
           <NavMenu />
@@ -17,11 +18,10 @@ export class Layout extends Component {
               </Grid>
               <Grid item xs={9} minWidth={"600px"}>
                   <Container tag="main">
-                      {this.props.children}
+                      {children}
                   </Container>
               </Grid>
           </Grid>
       </div>
     );
-  }
 }
