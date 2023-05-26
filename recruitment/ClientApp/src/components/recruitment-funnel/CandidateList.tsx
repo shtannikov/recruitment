@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import {FC} from "react";
+import {useAppNavigation} from "../../utils/useAppNavigation";
 
 export interface Candidate {
     id: number;
@@ -17,6 +18,8 @@ export interface Candidate {
 
 //TODO: empty state
 export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =>  {
+    const appNavigation = useAppNavigation();
+
     return (
         <TableContainer sx={{ minWidth: 400, maxWidth: 700 }} component={Paper}>
             <Table aria-label="simple table">
@@ -33,7 +36,7 @@ export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
-                                <Link href={`/candidate/${candidate.id}`} underline="hover">
+                                <Link href={appNavigation.getCandidateUrl(candidate.id)} underline="hover">
                                     {candidate.fullname}
                                 </Link>
                             </TableCell>

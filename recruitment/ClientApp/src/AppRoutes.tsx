@@ -1,6 +1,7 @@
 import ApiAuthorzationRoutes from './components/authorization/ApiAuthorizationRoutes';
 import {RecruitmentFunnel} from "./components/recruitment-funnel/RecruitmentFunnel";
 import {Candidate} from "./components/candidate/Candidate";
+import {FunnelStub} from "./components/recruitment-funnel/FunnelStub";
 
 export interface AppRoute {
   element: JSX.Element;
@@ -12,6 +13,10 @@ export interface AppRoute {
 const AppRoutes : AppRoute[] = [
   {
     index: true,
+    element: <FunnelStub />
+  },
+  {
+    path: '/funnel/:id',
     element: <RecruitmentFunnel />
   },
   {
