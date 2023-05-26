@@ -57,7 +57,16 @@ public static class BackendVacancy
                     Id = 6,
                     Order = 3,
                     Name = "Командное интервью",
-                    Candidates = Array.Empty<Candidate>()
+                    Candidates = new[]
+                    {
+                        new Candidate
+                        {
+                            Id = 10,
+                            FirstName = "Давид",
+                            LastName = "Хуриев",
+                            ElapsedDaysInCurrentStage = 0
+                        }
+                    }
                 }
             }
         }

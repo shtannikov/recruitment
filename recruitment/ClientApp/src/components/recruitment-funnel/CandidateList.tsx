@@ -12,8 +12,10 @@ import {useAppNavigation} from "../../utils/useAppNavigation";
 
 export interface Candidate {
     id: number;
-    fullname: string;
-    phaseDuration: number;
+    firstName: string;
+    middleName?: string | null;
+    lastName: string;
+    elapsedDaysInCurrentStage: number;
 }
 
 //TODO: empty state
@@ -32,15 +34,15 @@ export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =
                 <TableBody>
                     {candidates.map((candidate) => (
                         <TableRow
-                            key={candidate.fullname}
+                            key={candidate.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
                                 <Link href={appNavigation.getCandidateUrl(candidate.id)} underline="hover">
-                                    {candidate.fullname}
+                                    {candidate.firstName} {candidate.middleName} {candidate.lastName}
                                 </Link>
                             </TableCell>
-                            <TableCell align="right">{candidate.phaseDuration}</TableCell>
+                            <TableCell align="right">{candidate.elapsedDaysInCurrentStage}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
