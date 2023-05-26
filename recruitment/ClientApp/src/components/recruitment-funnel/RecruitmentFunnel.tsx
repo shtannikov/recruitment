@@ -3,7 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import {FC} from "react";
-import {PhasePanel} from "./PhasePanel";
+import {StageTab} from "./StageTab";
 
 export const RecruitmentFunnel: FC = () => {
     const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -23,6 +23,7 @@ export const RecruitmentFunnel: FC = () => {
         };
     }
 
+    //TODO: empty state && skeleton
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -32,9 +33,9 @@ export const RecruitmentFunnel: FC = () => {
                     <Tab label="Командное" {...accessibilityProps(2)} />
                 </Tabs>
             </Box>
-            <PhasePanel hidden={isPanelHidden} index={0} />
-            <PhasePanel hidden={isPanelHidden} index={1} />
-            <PhasePanel hidden={isPanelHidden} index={2} />
+            <StageTab hidden={isPanelHidden} index={0} />
+            <StageTab hidden={isPanelHidden} index={1} />
+            <StageTab hidden={isPanelHidden} index={2} />
         </Box>
     );
 }

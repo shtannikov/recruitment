@@ -62,8 +62,8 @@
   },
   "scripts": {
     "prestart": "node aspnetcore-https && node aspnetcore-react",
-    "graphql-compile": "graphql-codegen",
-    "realtime-graphql-compile": "graphql-codegen -w",
+    "graphql-codegen": "graphql-codegen",
+    "realtime-graphql-codegen": "graphql-codegen -w",
     "start": "rimraf ./build && react-scripts start",
     "build": "react-scripts build",
     "test": "cross-env CI=true react-scripts test --env=jsdom",

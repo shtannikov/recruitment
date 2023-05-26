@@ -15,6 +15,7 @@ export interface Candidate {
     phaseDuration: number;
 }
 
+//TODO: empty state
 export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =>  {
     return (
         <TableContainer sx={{ minWidth: 400, maxWidth: 700 }} component={Paper}>

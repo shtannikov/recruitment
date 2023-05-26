@@ -31,7 +31,7 @@ interface PhasePanelProps {
     hidden: (index: number) => boolean;
 }
 
-export const PhasePanel: FC<PhasePanelProps> = ({ index, hidden }) => {
+export const StageTab: FC<PhasePanelProps> = ({ index, hidden }) => {
     
     const candidates = candidatesPerPhase[index];
     

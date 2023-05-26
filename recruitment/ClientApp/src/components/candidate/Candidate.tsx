@@ -4,13 +4,13 @@ import {useParams} from "react-router-dom";
 import {gql} from "../../__generated__";
 import {useQuery} from "@apollo/client";
 
-const GET_BOOK = gql(`
-    query GetBook {
-      book {
-        title
-        author {
-          name
-        }
+const GET_CANDIDATE = gql(`
+    query GetCandidate($id: Int!) {
+      candidate(id: $id) {
+        firstName
+        middleName
+        lastName
+        elapsedDaysInCurrentStage
       }
     }
 `);
@@ -19,18 +19,21 @@ export const Candidate: FC = () => {
     const { id } = useParams<{id: string}>();
 
     const { loading, data } = useQuery(
-        GET_BOOK
+        GET_CANDIDATE,
+        { variables: { id: Number(id) }}
     );
+    
+    const candidate = data?.candidate;
 
+    // TODO: handle scenario when candidate is not found
+    // TODO: handle loading with skeleton
     return (
         <div>
-            <div>ID: {id}</div>
-            <div>ФИО: Штанников Евгений Павлович</div>
             { loading
                 ? (<div>Loading...</div>)
                 : ( <>
-                        <div> Title: {data?.book.title}</div>
-                        <div> Author: {data?.book.author.name}</div>
+                        <div>ID: {id}</div>
+                        <div> ФИО: {candidate?.firstName} {candidate?.middleName} {candidate?.lastName}</div>
                     </>)
             }
         </div>
