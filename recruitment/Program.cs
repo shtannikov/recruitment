@@ -4,6 +4,7 @@ using recruitment.Data;
 using recruitment.GraphQL;
 using recruitment.Models;
 using Microsoft.AspNetCore.Identity;
+using recruitment.data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(connectionString));
+
+builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlite(connectionString));
 
 builder.Services.AddAuthentication(o =>
@@ -29,6 +33,7 @@ builder.Services
     .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddTransient<CandidateRepository>();
 
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();

@@ -1,23 +1,29 @@
+using recruitment.data;
+
 namespace recruitment.GraphQL;
 
 public static class BackendVacancy
 {
-    public static Vacancy Value = new Vacancy
+    public static Vacancy GetVacancy(CandidateRepository repository)
     {
-        Id = 2,
-        Name = "Разработчик Backend",
-        RecruitemtFunnelId = 2,
-        RecruitemtFunnel = new Funnel
+        var candidate = repository.Get();
+
+        return new Vacancy
         {
             Id = 2,
-            OrderedStages = new[]
+            Name = "Разработчик Backend",
+            RecruitemtFunnelId = 2,
+            RecruitemtFunnel = new Funnel
+            {
+                Id = 2,
+                OrderedStages = new[]
             {
                 new FunnelStage
                 {
                     Id = 4,
                     Order = 1,
                     Name = "Новые отклики",
-                    Candidates = new[]
+                    Candidates = new Candidate[]
                     {
                         new Candidate
                         {
@@ -29,10 +35,11 @@ public static class BackendVacancy
                         },
                         new Candidate
                         {
-                            Id = 8,
-                            FirstName = "Роман",
-                            LastName = "Мисюрев",
-                            ElapsedDaysInCurrentStage = 7
+                            Id = candidate.Id,
+                            FirstName = candidate.FirstName,
+                            MiddleName = candidate.MiddleName,
+                            LastName = candidate.LastName,
+                            ElapsedDaysInCurrentStage = 250
                         }
                     }
                 },
@@ -69,6 +76,7 @@ public static class BackendVacancy
                     }
                 }
             }
-        }
-    };
+            }
+        };
+    }
 }
