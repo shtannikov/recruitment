@@ -4,9 +4,9 @@ import { NavMenu } from './NavMenu';
 import {Grid} from "@mui/material";
 import {Sidebar} from "../sidebar/Sidebar";
 
-export type LayoutProps = {
+interface LayoutProps {
     children: ReactNode;
-};
+}
 
 export const Layout: FC<LayoutProps> = ({ children }) => {
     return (

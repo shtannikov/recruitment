@@ -1,4 +1,3 @@
-import ApiAuthorzationRoutes from './components/authorization/ApiAuthorizationRoutes';
 import {RecruitmentFunnel} from "./components/recruitment-funnel/RecruitmentFunnel";
 import {Candidate} from "./components/candidate/Candidate";
 import {FunnelStub} from "./components/recruitment-funnel/FunnelStub";
@@ -22,8 +21,7 @@ const AppRoutes : AppRoute[] = [
   {
     path: '/candidate/:id',
     element: <Candidate />
-  },
-  ...ApiAuthorzationRoutes
+  }
 ];
 
 export default AppRoutes;

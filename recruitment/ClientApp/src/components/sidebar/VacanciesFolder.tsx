@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import List from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -12,7 +12,7 @@ import {useAppNavigation} from "../../utils/useAppNavigation";
 export const VacanciesFolder: FC = () => {
     const appNavigation = useAppNavigation();
 
-    const [isFolderOpen, openFolder] = React.useState(false);
+    const [isFolderOpen, openFolder] = useState(false);
     
     const [ getVacancies, { loading, data }] = useLazyVacanciesQuery();
 
