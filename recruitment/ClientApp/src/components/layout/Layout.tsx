@@ -13,7 +13,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
       <div>
           <NavMenu />
           <Grid container direction="row" width={"100vw"} height={"90vh"} wrap="nowrap" sx={{ overflow: "auto" }}>
-              <Grid item xs={3} borderRight={1} borderColor={'divider'} paddingLeft={4} paddingTop={2} minWidth={"300px"}>
+              <Grid item xs={3} borderRight={1} borderColor={'divider'} paddingLeft={4} paddingRight={1} paddingTop={2} minWidth={"310px"}>
                   <Sidebar/>
               </Grid>
               <Grid item xs={9} minWidth={"600px"}>

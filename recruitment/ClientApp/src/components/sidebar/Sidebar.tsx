@@ -6,32 +6,25 @@ import ListItemText from '@mui/material/ListItemText';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import SettingsIcon from '@mui/icons-material/Settings';
 import {VacanciesFolder} from "./VacanciesFolder";
-import {ListItem, Tooltip} from "@mui/material";
+import {ListItem, Skeleton, Tooltip} from "@mui/material";
+import {useUserContext} from '../../utils/UserContext';
+import {UserRole} from "../../__generated__/graphql";
+import {HiringManagerSidebar} from "./HiringManagerSidebar";
+import {LeadRecruiterSidebar} from "./LeadRecruiterSidebar";
+import {RecruiterSidebar} from "./RecruiterSidebar";
+
+const sidebarByRoleMap = new Map<UserRole, FC>([
+    [UserRole.HiringManager, HiringManagerSidebar],
+    [UserRole.Recruiter, RecruiterSidebar],
+    [UserRole.LeadRecruiter, LeadRecruiterSidebar],
+]);
 
 export const Sidebar: FC = () => {
-    return (
-        <List component="nav">
-            <VacanciesFolder />
-            <Tooltip title="В разработке">
-                <ListItem disablePadding>
-                    <ListItemButton disabled>
-                        <ListItemIcon>
-                            <LibraryAddIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Заявка на вакансию" />
-                    </ListItemButton>
-                </ListItem>
-            </Tooltip>
-            <Tooltip title="В разработке">
-                <ListItem disablePadding>
-                    <ListItemButton disabled>
-                        <ListItemIcon>
-                            <SettingsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Настройки" />
-                    </ListItemButton>
-                </ListItem>
-            </Tooltip>
-        </List>
-    );
+    const { isLoading, userRole } = useUserContext();
+
+    const SpecificSidebar = sidebarByRoleMap.get(userRole!);
+
+    return !isLoading && SpecificSidebar
+        ? (<SpecificSidebar />)
+        : <Skeleton variant="rectangular" height={150} />
 }
