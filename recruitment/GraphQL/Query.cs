@@ -8,6 +8,8 @@ public class Query
         BackendVacancy.Value
     };
 
+    public UserSettingsQuery UserSettings => new UserSettingsQuery();
+
     public Funnel? GetRecruitmentFunnel(int id) =>
         GetVacancies()
             .Select(v => v.RecruitemtFunnel)
