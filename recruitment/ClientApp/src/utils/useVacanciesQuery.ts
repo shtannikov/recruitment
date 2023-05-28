@@ -1,24 +1,25 @@
 import {gql} from "../__generated__";
 import {useLazyQuery, useQuery} from "@apollo/client";
 
-const GET_VACANCIES = gql(`
-    query GetVacancies {
-      vacancies {
+const GET_ACTIVE_VACANCIES = gql(`
+    query GetActiveVacancies {
+        activeVacancies {
         id,
         name,
-        recruitemtFunnelId
+        recruitemtFunnelId,
+        isArchive
       }
     }
 `);
 
 export function useVacanciesQuery() {
     return useQuery(
-        GET_VACANCIES
+        GET_ACTIVE_VACANCIES
     ); 
 }
 
 export function useLazyVacanciesQuery() {
     return useLazyQuery(
-        GET_VACANCIES
+        GET_ACTIVE_VACANCIES
     );
 }

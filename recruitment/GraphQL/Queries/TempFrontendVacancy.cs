@@ -23,7 +23,7 @@ public static class FrontendVacancy
                         {
                             new Candidate
                             {
-                                Id = 1,
+                                Id = 10,
                                 FirstName = "Евгений",
                                 MiddleName = "Павлович",
                                 LastName = "Штанников",
@@ -31,7 +31,7 @@ public static class FrontendVacancy
                             },
                             new Candidate
                             {
-                                Id = 2,
+                                Id = 20,
                                 FirstName = "Кирилл",
                                 LastName = "Родимов",
                                 ElapsedDaysInCurrentStage = 6

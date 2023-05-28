@@ -7,9 +7,9 @@ export const FunnelStub: FC = () => {
     const appNavigation = useAppNavigation();
     const { loading, data } = useVacanciesQuery();
 
-    if (!loading && data && data.vacancies.length > 0)
+    if (!loading && data && data.activeVacancies.length > 0)
     {
-        const defaultFunnelId = data.vacancies[0].recruitemtFunnelId;
+        const defaultFunnelId = data.activeVacancies[0].recruitemtFunnelId;
         appNavigation.redirectToFunnel(defaultFunnelId);
     }
 

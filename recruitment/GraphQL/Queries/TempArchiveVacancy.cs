@@ -1,16 +1,16 @@
-using recruitment.data;
+﻿using recruitment.data;
 
 namespace recruitment.GraphQL;
 
-public static class BackendVacancy
+public static class ArchiveVacancy
 {
     public static Vacancy GetVacancy(CandidateRepository repository)
     {
         var candidate = repository.Get();
         var vacancy = new Vacancy
         {
-            Id = 2,
-            Name = "Разработчик Backend",
+            Id = 3,
+            Name = "Разработчик Backend(Архив)",
             RecruitemtFunnelId = 2,
             RecruitemtFunnel = new Funnel
             {
@@ -19,9 +19,9 @@ public static class BackendVacancy
             {
                 new FunnelStage
                 {
-                    Id = 4,
+                    Id = 10,
                     Order = 1,
-                    Name = "Новые отклики",
+                    Name = "Отказ",
                     Candidates = new []
                     {
                         new Candidate
@@ -51,47 +51,8 @@ public static class BackendVacancy
 
                             }
                         },
-                        new Candidate
-                        {
-                            Id = candidate.Id,
-                            FirstName = candidate.FirstName,
-                            LastName = candidate.LastName,
-                            ElapsedDaysInCurrentStage = 250,
-                        }
                     }
                 },
-                new FunnelStage
-                {
-                    Id = 5,
-                    Order = 2,
-                    Name = "Техническое интервью",
-                    Candidates = new[]
-                    {
-                        new Candidate
-                        {
-                            Id = 9,
-                            FirstName = "Павел",
-                            LastName = "Кравцов",
-                            ElapsedDaysInCurrentStage = 1
-                        }
-                    }
-                },
-                new FunnelStage
-                {
-                    Id = 6,
-                    Order = 3,
-                    Name = "Командное интервью",
-                    Candidates = new[]
-                    {
-                        new Candidate
-                        {
-                            Id = 10,
-                            FirstName = "Давид",
-                            LastName = "Хуриев",
-                            ElapsedDaysInCurrentStage = 0
-                        }
-                    }
-                }
             }
             }
         };
