@@ -17,8 +17,6 @@ export interface Candidate {
     lastName: string;
     elapsedDaysInCurrentStage: number;
 }
-
-//TODO: empty state
 export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =>  {
     const appNavigation = useAppNavigation();
 

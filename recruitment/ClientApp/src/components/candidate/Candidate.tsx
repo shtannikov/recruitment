@@ -3,9 +3,8 @@ import {FC, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { gql } from "../../__generated__";
 import { useQuery } from "@apollo/client";
-import { FunnelForCandidate } from './FunnelForCandidate';
-import ResumeTab from './ResumeTabs';
-import OtherVacancies from './OtherVacancies';
+import { CandidateStage } from './CandidateStage';
+import ResumePanel from './ResumePanel';
 import {usePageContext} from "../../utils/usePageContext";
 
 const GET_CANDIDATE = gql(`
@@ -26,13 +25,6 @@ const GET_CANDIDATE = gql(`
     }
 `);
 
-//candidateVacancies{
-//    сurrentFunnelStageName
-//    VacancyName
-//    isArchive
-//    nextfunnelstagesnames
-//}
-
 export const Candidate: FC = () => {
   const pageContext = usePageContext();
   useEffect(() => {
@@ -47,7 +39,6 @@ export const Candidate: FC = () => {
      );
 
     const candidate = data?.candidate;
-    //const activeVacancy = data?.candidateVacancies;
 
   var rows = [
     createData('Скриннинг', "25.04.2023", "Катя(ссылка)", "надо брать"),
@@ -64,40 +55,43 @@ export const Candidate: FC = () => {
   }
 
   return (
-    <List sx={{ width: '100%', minWidth: 400, maxWidth: 700, bgcolor: 'background.paper' }}>
-      <ListItem>
-        <ListItemAvatar sx={{ pr: 4 }}>
-          <Avatar
-            alt="Remy Sharp"
-            src="/static/images/avatar/1.jpg"
-            sx={{ width: 100, height: 100 }}
-          />
-        </ListItemAvatar>
-        <ListItemText primary={candidate?.firstName + ' ' + candidate?.middleName +' ' + candidate?.lastName} />
-        {candidate?.contacts && candidate?.contacts.map((contact) => (
-                                <ListItemText secondary={contact.type+':'+' ' + contact.value} />
-                            ))}
-        { candidate?.city && <ListItemText secondary={'город: ' + candidate?.city} />}
-      </ListItem>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableBody>
             <TableRow>
               <TableCell component="th" scope="row">
-                              <FunnelForCandidate rows={rows} funnelName='test' vacanceName='Разработчик backend' nextFunnelStages={["Найм", "Отказ"]} ></FunnelForCandidate>
+                <List sx={{ width: '100%', minWidth: 400, maxWidth: 700, bgcolor: 'background.paper' }}>
+                  <ListItem>
+                    <ListItemAvatar sx={{ pr: 4 }}>
+                      <Avatar
+                          alt="Remy Sharp"
+                          src="/static/images/avatar/1.jpg"
+                          sx={{ width: 100, height: 100 }}
+                      />
+                    </ListItemAvatar>
+                    <ListItemText primary={`${candidate?.firstName} ${candidate?.middleName} ${candidate?.lastName}`} />
+                      { candidate?.contacts 
+                          && candidate?.contacts.map((contact) => (
+                            <ListItemText secondary={`${contact.type}: ${contact.value}`}/>
+                          ))
+                      }
+                    { candidate?.city && (<ListItemText secondary={`Город: ${candidate?.city}`} />)}
+                  </ListItem>
+                </List>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
-                <OtherVacancies>
-                  <FunnelForCandidate rows={rows} funnelName='Отказали' vacanceName='Разработчик frontend (архив)' disableNextStages={true}></FunnelForCandidate>
-                </OtherVacancies>
+                 <CandidateStage rows={rows} funnelName='Ждём выхода' vacanceName='Разработчик Backend' nextFunnelStages={["Найм", "Отказ"]} />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell component="th" scope="row">
+                <ResumePanel />
               </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
-      <ResumeTab />
-    </List>
   );
 }

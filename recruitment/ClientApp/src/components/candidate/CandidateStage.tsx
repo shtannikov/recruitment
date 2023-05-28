@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { ListItem, ListItemText, List, ListItemButton, TableContainer, TableHead, Table, TableCell, TableBody, TableRow, Paper } from '@mui/material';
-import { ChangeFunnelDialog } from './ChangeFunnelDialog';
+import { ListItem, ListItemText, List, TableContainer, TableHead, Table, TableCell, TableBody, TableRow, Paper } from '@mui/material';
+import { ChangeFunnelStageDialog } from './ChangeFunnelStageDialog';
 
 interface Props {
     funnelName: string;
@@ -8,7 +8,7 @@ interface Props {
     rows: Row[];
     nextFunnelStages?: string[];
     disableNextStages?: boolean;
-};
+}
 
 interface Row {
     name: string;
@@ -17,21 +17,21 @@ interface Row {
     comment: string;
 }
 
-export const FunnelForCandidate: FC<Props> = (props) => {
+export const CandidateStage: FC<Props> = (props) => {
     return (
         <List>
             <ListItem>
                 <ListItemText primary={props.vacanceName} secondary={props.funnelName} />
-                {!props.disableNextStages && <ChangeFunnelDialog nextFunnelStages={props.nextFunnelStages}/>}
+                {!props.disableNextStages && <ChangeFunnelStageDialog nextFunnelStages={props.nextFunnelStages}/>}
             </ListItem>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell align="right">Этап</TableCell>
-                                <TableCell align="right">Дата</TableCell>
-                                <TableCell align="right">Кто</TableCell>
-                                <TableCell align="right">Обратная связь</TableCell>
+                                <TableCell align="left">Комментарий</TableCell>
+                                <TableCell align="left">Этап</TableCell>
+                                <TableCell align="left">Автор</TableCell>
+                                <TableCell align="left">Дата</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -40,19 +40,17 @@ export const FunnelForCandidate: FC<Props> = (props) => {
                                     key={row.name}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
+                                    <TableCell align="left">{row.comment}</TableCell>
                                     <TableCell component="th" scope="row">
                                         {row.name}
                                     </TableCell>
-                                    <TableCell align="right">{row.date}</TableCell>
-                                    <TableCell align="right">{row.who}</TableCell>
-                                    <TableCell align="right">{row.comment}</TableCell>
+                                    <TableCell align="left">{row.who}</TableCell>
+                                    <TableCell align="left">{row.date}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
-                { !props.disableNextStages && (<ListItemButton>Оставить обратную связь по текущему этапу</ListItemButton>)}
-            
         </List>
     );
 }
