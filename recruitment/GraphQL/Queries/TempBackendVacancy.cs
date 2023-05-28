@@ -6,6 +6,7 @@ public static class BackendVacancy
 {
     public static Vacancy GetVacancy(CandidateRepository repository)
     {
+        var candidate = repository.Get();
         var vacancy = new Vacancy
         {
             Id = 2,
@@ -33,9 +34,9 @@ public static class BackendVacancy
                         },
                         new Candidate
                         {
-                            Id = 8,
-                            FirstName = "Роман",
-                            LastName = "Мисюрев",
+                            Id = candidate.Id,
+                            FirstName = candidate.FirstName,
+                            LastName = candidate.LastName,
                             ElapsedDaysInCurrentStage = 250
                         }
                     }

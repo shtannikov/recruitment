@@ -15,4 +15,6 @@ public class DataContext : DbContext
     {
         options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
     }
+
+    public DbSet<Candidate> Candidates { get; set; }
 }
