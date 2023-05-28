@@ -13,25 +13,18 @@ import {usePageContext} from "../../utils/usePageContext";
 const GET_FUNNEL = gql(`
     query GetFunnel($id: Int!) {
       recruitmentFunnel(id: $id) {
-          vacancy {
+        vacancy {
             name
         }
-        orderedStages {
+        stages {
           id,
           name,
           candidates {
             id,
             firstName
-        middleName
-        lastName
-        city
-        contacts {
-          id
-          value
-          type
-          candidateId
-        }
-        elapsedDaysInCurrentStage
+            middleName
+            lastName
+            elapsedDaysInCurrentStage
           }
         }
       }
@@ -72,7 +65,7 @@ export const RecruitmentFunnel: FC = () => {
         };
     }
     
-    const orderedStages = data?.recruitmentFunnel?.orderedStages;
+    const orderedStages = data?.recruitmentFunnel?.stages;
 
     return loading
         ? (<Skeleton variant="rectangular" height={200} />)

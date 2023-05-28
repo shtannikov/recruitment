@@ -4,11 +4,10 @@ import {useLazyQuery, useQuery} from "@apollo/client";
 const GET_ACTIVE_VACANCIES = gql(`
     query GetActiveVacancies {
         activeVacancies {
-        id,
-        name,
-        recruitemtFunnelId,
-        isArchive
-      }
+            id,
+            name,
+            recruitemtFunnelId,
+        }
     }
 `);
 

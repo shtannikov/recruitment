@@ -54,7 +54,7 @@ export default function ResumePanel() {
       </Box>
       <ResumeTab value={value} index={0}>
           <Typography variant="h6" gutterBottom>
-              Разработчик .Net
+              Fullstack Разработчик
           </Typography>
           <Typography variant="body2" gutterBottom>
               Занятость: полная занятость, частичная занятость, проектная работа

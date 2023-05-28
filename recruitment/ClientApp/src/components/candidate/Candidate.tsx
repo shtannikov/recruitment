@@ -14,13 +14,17 @@ const GET_CANDIDATE = gql(`
         middleName
         lastName
         city
-        contacts {
-          id
-          value
-          type
-          candidateId
+        email
+        mobilePhone
+        
+        currentStage {
+          name
+          funnel {
+            vacancy {
+              name
+            }
+          }
         }
-        elapsedDaysInCurrentStage
       }
     }
 `);
@@ -37,22 +41,8 @@ export const Candidate: FC = () => {
        GET_CANDIDATE,
        { variables: { id: Number(id) } }
      );
-
-    const candidate = data?.candidate;
-
-  var rows = [
-    createData('Скриннинг', "25.04.2023", "Катя(ссылка)", "надо брать"),
-    createData('Тех собес', "29.04.2023", "Иван(ссылка)", "плохо ответил по алгоритмам"),
-  ];
-
-  function createData(
-    name: string,
-    date: string,
-    who: string,
-    comment: string,
-  ) {
-    return { name, date, who, comment };
-  }
+     
+  const candidate = data?.candidate;
 
   return (
       <TableContainer component={Paper}>
@@ -69,20 +59,18 @@ export const Candidate: FC = () => {
                           sx={{ width: 100, height: 100 }}
                       />
                     </ListItemAvatar>
-                    <ListItemText primary={`${candidate?.firstName} ${candidate?.middleName} ${candidate?.lastName}`} />
-                      { candidate?.contacts 
-                          && candidate?.contacts.map((contact) => (
-                            <ListItemText secondary={`${contact.type}: ${contact.value}`}/>
-                          ))
-                      }
-                    { candidate?.city && (<ListItemText secondary={`Город: ${candidate?.city}`} />)}
+                    <ListItemText primary={`${candidate?.firstName} ${candidate?.middleName} ${candidate?.lastName}`}>
+                    </ListItemText>
                   </ListItem>
                 </List>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
-                 <CandidateStage rows={rows} funnelName='Ждём выхода' vacanceName='Разработчик Backend' nextFunnelStages={["Найм", "Отказ"]} />
+                 <CandidateStage 
+                     stage={candidate?.currentStage.name}
+                     vacancy={candidate?.currentStage.funnel.vacancy.name}
+                     nextStages={["Найм", "Отказ"]} />
               </TableCell>
             </TableRow>
             <TableRow>
