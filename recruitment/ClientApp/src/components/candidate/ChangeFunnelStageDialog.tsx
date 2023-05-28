@@ -57,7 +57,7 @@ export const ChangeFunnelStageDialog: FC<Props> = (props) => {
                     </Select>
                     <DialogActions>
                         <Button onClick={closeDialog}>Закрыть</Button>
-                        <Button onClick={closeDialog}>Сменить</Button>
+                        <Button onClick={closeDialog} disabled>Сменить (в разработке)</Button>
                     </DialogActions>
                 </DialogContent>
             </Dialog>
