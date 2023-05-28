@@ -6,7 +6,7 @@ public class Query
 {
     public Vacancy[] GetVacancies([Service] CandidateRepository repository) => new[]
     {
-        FrontendVacancy.Value,
+        FrontendVacancy.GetValue(),
         BackendVacancy.GetVacancy(repository)
     };
 

@@ -1,12 +1,5 @@
 import React, {FC} from 'react';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
-import SettingsIcon from '@mui/icons-material/Settings';
-import {VacanciesFolder} from "./VacanciesFolder";
-import {ListItem, Skeleton, Tooltip} from "@mui/material";
+import {Skeleton} from "@mui/material";
 import {useUserContext} from '../../utils/UserContext';
 import {UserRole} from "../../__generated__/graphql";
 import {HiringManagerSidebar} from "./HiringManagerSidebar";

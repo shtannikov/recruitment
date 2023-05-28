@@ -6,9 +6,7 @@ public static class BackendVacancy
 {
     public static Vacancy GetVacancy(CandidateRepository repository)
     {
-        var candidate = repository.Get();
-
-        return new Vacancy
+        var vacancy = new Vacancy
         {
             Id = 2,
             Name = "Разработчик Backend",
@@ -23,7 +21,7 @@ public static class BackendVacancy
                     Id = 4,
                     Order = 1,
                     Name = "Новые отклики",
-                    Candidates = new Candidate[]
+                    Candidates = new []
                     {
                         new Candidate
                         {
@@ -35,10 +33,9 @@ public static class BackendVacancy
                         },
                         new Candidate
                         {
-                            Id = candidate.Id,
-                            FirstName = candidate.FirstName,
-                            MiddleName = candidate.MiddleName,
-                            LastName = candidate.LastName,
+                            Id = 8,
+                            FirstName = "Роман",
+                            LastName = "Мисюрев",
                             ElapsedDaysInCurrentStage = 250
                         }
                     }
@@ -78,5 +75,9 @@ public static class BackendVacancy
             }
             }
         };
+
+        vacancy.RecruitemtFunnel.Vacancy = vacancy;
+
+        return vacancy;
     }
 }

@@ -1,11 +1,12 @@
 import { Avatar, ListItem, ListItemAvatar, ListItemText, List, TableContainer, Table, TableCell, TableBody, TableRow, Paper } from '@mui/material';
-import { FC } from "react";
+import {FC, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { gql } from "../../__generated__";
 import { useQuery } from "@apollo/client";
 import { FunnelForCandidate } from './FunnelForCandidate';
 import ResumeTab from './ResumeTabs';
 import OtherVacancies from './OtherVacancies';
+import {usePageContext} from "../../utils/usePageContext";
 
 const GET_CANDIDATE = gql(`
     query GetCandidate($id: Int!) {
@@ -19,8 +20,12 @@ const GET_CANDIDATE = gql(`
 `);
 
 export const Candidate: FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const pageContext = usePageContext();
+  useEffect(() => {
+    pageContext.setTitle("Анкета кандидата");
+  }, []);
 
+  const { id } = useParams<{ id: string }>();
 
   const { loading, data } = useQuery(
     GET_CANDIDATE,

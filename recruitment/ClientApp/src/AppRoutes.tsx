@@ -6,7 +6,6 @@ export interface AppRoute {
   element: JSX.Element;
   path?: string;
   index?: boolean;
-  requireAuth?: boolean;
 }
 
 const AppRoutes : AppRoute[] = [

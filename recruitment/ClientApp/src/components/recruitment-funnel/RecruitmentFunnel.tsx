@@ -2,16 +2,20 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import {StageTab} from "./StageTab";
 import {gql} from "../../__generated__";
 import {useParams} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {Skeleton} from "@mui/material";
+import {usePageContext} from "../../utils/usePageContext";
 
 const GET_FUNNEL = gql(`
     query GetFunnel($id: Int!) {
       recruitmentFunnel(id: $id) {
+          vacancy {
+            name
+        }
         orderedStages {
           id,
           name,
@@ -34,6 +38,15 @@ export const RecruitmentFunnel: FC = () => {
         GET_FUNNEL,
         { variables: { id: Number(id) }}
     );
+
+    const pageContext = usePageContext();
+    useEffect(() => {
+        const vacancy = data?.recruitmentFunnel?.vacancy.name;
+        const title = vacancy
+            ? `Воронка найма / ${vacancy}`
+            : "Воронка найма";
+        pageContext.setTitle(title);
+    }, [loading]);
 
     const [currentIndex, setCurrentIndex] = React.useState(0);
 
