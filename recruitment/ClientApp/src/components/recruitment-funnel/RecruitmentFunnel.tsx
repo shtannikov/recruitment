@@ -21,10 +21,17 @@ const GET_FUNNEL = gql(`
           name,
           candidates {
             id,
-            firstName,
-            middleName,
-            lastName,
-            elapsedDaysInCurrentStage
+            firstName
+        middleName
+        lastName
+        city
+        contacts {
+          id
+          value
+          type
+          candidateId
+        }
+        elapsedDaysInCurrentStage
           }
         }
       }

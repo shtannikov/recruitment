@@ -13,10 +13,10 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n    query GetCandidate($id: Int!) {\n      candidate(id: $id) {\n        firstName\n        middleName\n        lastName\n        elapsedDaysInCurrentStage\n      }\n    }\n": types.GetCandidateDocument,
-    "\n    query GetFunnel($id: Int!) {\n      recruitmentFunnel(id: $id) {\n          vacancy {\n            name\n        }\n        orderedStages {\n          id,\n          name,\n          candidates {\n            id,\n            firstName,\n            middleName,\n            lastName,\n            elapsedDaysInCurrentStage\n          }\n        }\n      }\n    }\n": types.GetFunnelDocument,
+    "\n    query GetCandidate($id: Int!) {\n      candidate(id: $id) {\n        firstName\n        middleName\n        lastName\n        city\n        contacts {\n          id\n          value\n          type\n          candidateId\n        }\n        elapsedDaysInCurrentStage\n      }\n    }\n": types.GetCandidateDocument,
+    "\n    query GetFunnel($id: Int!) {\n      recruitmentFunnel(id: $id) {\n          vacancy {\n            name\n        }\n        orderedStages {\n          id,\n          name,\n          candidates {\n            id,\n            firstName\n        middleName\n        lastName\n        city\n        contacts {\n          id\n          value\n          type\n          candidateId\n        }\n        elapsedDaysInCurrentStage\n          }\n        }\n      }\n    }\n": types.GetFunnelDocument,
     "\n    query GetUserRole {\n      userSettings {\n        userRole\n      }\n    }\n": types.GetUserRoleDocument,
-    "\n    query GetVacancies {\n      vacancies {\n        id,\n        name,\n        recruitemtFunnelId\n      }\n    }\n": types.GetVacanciesDocument,
+    "\n    query GetActiveVacancies {\n        activeVacancies {\n        id,\n        name,\n        recruitemtFunnelId,\n        isArchive\n      }\n    }\n": types.GetActiveVacanciesDocument,
 };
 
 /**
@@ -36,11 +36,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n    query GetCandidate($id: Int!) {\n      candidate(id: $id) {\n        firstName\n        middleName\n        lastName\n        elapsedDaysInCurrentStage\n      }\n    }\n"): (typeof documents)["\n    query GetCandidate($id: Int!) {\n      candidate(id: $id) {\n        firstName\n        middleName\n        lastName\n        elapsedDaysInCurrentStage\n      }\n    }\n"];
+export function gql(source: "\n    query GetCandidate($id: Int!) {\n      candidate(id: $id) {\n        firstName\n        middleName\n        lastName\n        city\n        contacts {\n          id\n          value\n          type\n          candidateId\n        }\n        elapsedDaysInCurrentStage\n      }\n    }\n"): (typeof documents)["\n    query GetCandidate($id: Int!) {\n      candidate(id: $id) {\n        firstName\n        middleName\n        lastName\n        city\n        contacts {\n          id\n          value\n          type\n          candidateId\n        }\n        elapsedDaysInCurrentStage\n      }\n    }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n    query GetFunnel($id: Int!) {\n      recruitmentFunnel(id: $id) {\n          vacancy {\n            name\n        }\n        orderedStages {\n          id,\n          name,\n          candidates {\n            id,\n            firstName,\n            middleName,\n            lastName,\n            elapsedDaysInCurrentStage\n          }\n        }\n      }\n    }\n"): (typeof documents)["\n    query GetFunnel($id: Int!) {\n      recruitmentFunnel(id: $id) {\n          vacancy {\n            name\n        }\n        orderedStages {\n          id,\n          name,\n          candidates {\n            id,\n            firstName,\n            middleName,\n            lastName,\n            elapsedDaysInCurrentStage\n          }\n        }\n      }\n    }\n"];
+export function gql(source: "\n    query GetFunnel($id: Int!) {\n      recruitmentFunnel(id: $id) {\n          vacancy {\n            name\n        }\n        orderedStages {\n          id,\n          name,\n          candidates {\n            id,\n            firstName\n        middleName\n        lastName\n        city\n        contacts {\n          id\n          value\n          type\n          candidateId\n        }\n        elapsedDaysInCurrentStage\n          }\n        }\n      }\n    }\n"): (typeof documents)["\n    query GetFunnel($id: Int!) {\n      recruitmentFunnel(id: $id) {\n          vacancy {\n            name\n        }\n        orderedStages {\n          id,\n          name,\n          candidates {\n            id,\n            firstName\n        middleName\n        lastName\n        city\n        contacts {\n          id\n          value\n          type\n          candidateId\n        }\n        elapsedDaysInCurrentStage\n          }\n        }\n      }\n    }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -48,7 +48,7 @@ export function gql(source: "\n    query GetUserRole {\n      userSettings {\n  
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n    query GetVacancies {\n      vacancies {\n        id,\n        name,\n        recruitemtFunnelId\n      }\n    }\n"): (typeof documents)["\n    query GetVacancies {\n      vacancies {\n        id,\n        name,\n        recruitemtFunnelId\n      }\n    }\n"];
+export function gql(source: "\n    query GetActiveVacancies {\n        activeVacancies {\n        id,\n        name,\n        recruitemtFunnelId,\n        isArchive\n      }\n    }\n"): (typeof documents)["\n    query GetActiveVacancies {\n        activeVacancies {\n        id,\n        name,\n        recruitemtFunnelId,\n        isArchive\n      }\n    }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

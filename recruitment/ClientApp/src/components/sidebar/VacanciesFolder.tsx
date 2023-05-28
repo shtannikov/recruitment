@@ -33,7 +33,7 @@ export const VacanciesFolder: FC = () => {
             <Collapse in={isFolderOpen} unmountOnExit>
                 <List component="nav" disablePadding sx={{ flexDirection: "column" }}>
                     {
-                        !loading && data?.vacancies.map((vacancy) => (
+                        !loading && data?.activeVacancies.map((vacancy) => (
                             <ListItemButton sx={{ paddingLeft: 10 }} href={appNavigation.getFunnelUrl(vacancy.recruitemtFunnelId)}>
                                 <ListItemText primary={vacancy.name} />
                             </ListItemButton>

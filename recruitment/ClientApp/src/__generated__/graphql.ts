@@ -24,11 +24,29 @@ export enum ApplyPolicy {
 
 export type Candidate = {
   __typename?: 'Candidate';
+  city?: Maybe<Scalars['String']['output']>;
+  contacts?: Maybe<Array<Contact>>;
   elapsedDaysInCurrentStage: Scalars['Int']['output'];
   firstName: Scalars['String']['output'];
   id: Scalars['Int']['output'];
   lastName: Scalars['String']['output'];
   middleName?: Maybe<Scalars['String']['output']>;
+};
+
+export type CandidateVacancy = {
+  __typename?: 'CandidateVacancy';
+  currentFunnelStageName: Scalars['String']['output'];
+  isArchive: Scalars['Boolean']['output'];
+  nextFunnelStagesNames: Array<Scalars['String']['output']>;
+  vacancyName: Scalars['String']['output'];
+};
+
+export type Contact = {
+  __typename?: 'Contact';
+  candidateId: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  type: Scalars['String']['output'];
+  value: Scalars['String']['output'];
 };
 
 export type CreationResponse = {
@@ -40,6 +58,7 @@ export type CreationResponse = {
 export type Funnel = {
   __typename?: 'Funnel';
   id: Scalars['Int']['output'];
+  isArchive: Scalars['Boolean']['output'];
   orderedStages: Array<FunnelStage>;
   vacancy: Vacancy;
 };
@@ -64,14 +83,21 @@ export type MutationCreateUserArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  activeVacancies: Array<Vacancy>;
+  allVacancies: Array<Vacancy>;
   candidate?: Maybe<Candidate>;
+  candidateVacancies: Array<CandidateVacancy>;
   recruitmentFunnel?: Maybe<Funnel>;
   userSettings: UserSettingsQuery;
-  vacancies: Array<Vacancy>;
 };
 
 
 export type QueryCandidateArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryCandidateVacanciesArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -100,6 +126,7 @@ export type UserSettingsQuery = {
 export type Vacancy = {
   __typename?: 'Vacancy';
   id: Scalars['Int']['output'];
+  isArchive: Scalars['Boolean']['output'];
   name: Scalars['String']['output'];
   recruitemtFunnel: Funnel;
   recruitemtFunnelId: Scalars['Int']['output'];
@@ -110,27 +137,27 @@ export type GetCandidateQueryVariables = Exact<{
 }>;
 
 
-export type GetCandidateQuery = { __typename?: 'Query', candidate?: { __typename?: 'Candidate', firstName: string, middleName?: string | null, lastName: string, elapsedDaysInCurrentStage: number } | null };
+export type GetCandidateQuery = { __typename?: 'Query', candidate?: { __typename?: 'Candidate', firstName: string, middleName?: string | null, lastName: string, city?: string | null, elapsedDaysInCurrentStage: number, contacts?: Array<{ __typename?: 'Contact', id: number, value: string, type: string, candidateId: number }> | null } | null };
 
 export type GetFunnelQueryVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
 
 
-export type GetFunnelQuery = { __typename?: 'Query', recruitmentFunnel?: { __typename?: 'Funnel', vacancy: { __typename?: 'Vacancy', name: string }, orderedStages: Array<{ __typename?: 'FunnelStage', id: number, name: string, candidates: Array<{ __typename?: 'Candidate', id: number, firstName: string, middleName?: string | null, lastName: string, elapsedDaysInCurrentStage: number }> }> } | null };
+export type GetFunnelQuery = { __typename?: 'Query', recruitmentFunnel?: { __typename?: 'Funnel', vacancy: { __typename?: 'Vacancy', name: string }, orderedStages: Array<{ __typename?: 'FunnelStage', id: number, name: string, candidates: Array<{ __typename?: 'Candidate', id: number, firstName: string, middleName?: string | null, lastName: string, city?: string | null, elapsedDaysInCurrentStage: number, contacts?: Array<{ __typename?: 'Contact', id: number, value: string, type: string, candidateId: number }> | null }> }> } | null };
 
 export type GetUserRoleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUserRoleQuery = { __typename?: 'Query', userSettings: { __typename?: 'UserSettingsQuery', userRole: UserRole } };
 
-export type GetVacanciesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetActiveVacanciesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetVacanciesQuery = { __typename?: 'Query', vacancies: Array<{ __typename?: 'Vacancy', id: number, name: string, recruitemtFunnelId: number }> };
+export type GetActiveVacanciesQuery = { __typename?: 'Query', activeVacancies: Array<{ __typename?: 'Vacancy', id: number, name: string, recruitemtFunnelId: number, isArchive: boolean }> };
 
 
-export const GetCandidateDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCandidate"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"candidate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"middleName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"elapsedDaysInCurrentStage"}}]}}]}}]} as unknown as DocumentNode<GetCandidateQuery, GetCandidateQueryVariables>;
-export const GetFunnelDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetFunnel"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"recruitmentFunnel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacancy"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"orderedStages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"candidates"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"middleName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"elapsedDaysInCurrentStage"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetFunnelQuery, GetFunnelQueryVariables>;
+export const GetCandidateDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCandidate"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"candidate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"middleName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"contacts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"candidateId"}}]}},{"kind":"Field","name":{"kind":"Name","value":"elapsedDaysInCurrentStage"}}]}}]}}]} as unknown as DocumentNode<GetCandidateQuery, GetCandidateQueryVariables>;
+export const GetFunnelDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetFunnel"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"recruitmentFunnel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacancy"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"orderedStages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"candidates"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"middleName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"contacts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"candidateId"}}]}},{"kind":"Field","name":{"kind":"Name","value":"elapsedDaysInCurrentStage"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetFunnelQuery, GetFunnelQueryVariables>;
 export const GetUserRoleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserRole"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userRole"}}]}}]}}]} as unknown as DocumentNode<GetUserRoleQuery, GetUserRoleQueryVariables>;
-export const GetVacanciesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetVacancies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacancies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"recruitemtFunnelId"}}]}}]}}]} as unknown as DocumentNode<GetVacanciesQuery, GetVacanciesQueryVariables>;
+export const GetActiveVacanciesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetActiveVacancies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"activeVacancies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"recruitemtFunnelId"}},{"kind":"Field","name":{"kind":"Name","value":"isArchive"}}]}}]}}]} as unknown as DocumentNode<GetActiveVacanciesQuery, GetActiveVacanciesQueryVariables>;

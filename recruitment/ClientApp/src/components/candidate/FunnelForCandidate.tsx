@@ -6,7 +6,7 @@ interface Props {
     funnelName: string;
     vacanceName: string;
     rows: Row[];
-    nextFunnelStages: string[];
+    nextFunnelStages?: string[];
     disableNextStages?: boolean;
 };
 

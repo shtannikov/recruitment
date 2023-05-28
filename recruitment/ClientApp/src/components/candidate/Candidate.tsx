@@ -14,10 +14,24 @@ const GET_CANDIDATE = gql(`
         firstName
         middleName
         lastName
+        city
+        contacts {
+          id
+          value
+          type
+          candidateId
+        }
         elapsedDaysInCurrentStage
       }
     }
 `);
+
+//candidateVacancies{
+//    сurrentFunnelStageName
+//    VacancyName
+//    isArchive
+//    nextfunnelstagesnames
+//}
 
 export const Candidate: FC = () => {
   const pageContext = usePageContext();
@@ -27,12 +41,13 @@ export const Candidate: FC = () => {
 
   const { id } = useParams<{ id: string }>();
 
-  const { loading, data } = useQuery(
-    GET_CANDIDATE,
-    { variables: { id: Number(id) } }
-  );
+     const { loading, data } = useQuery(
+       GET_CANDIDATE,
+       { variables: { id: Number(id) } }
+     );
 
-  const candidate = data?.candidate;
+    const candidate = data?.candidate;
+    //const activeVacancy = data?.candidateVacancies;
 
   var rows = [
     createData('Скриннинг', "25.04.2023", "Катя(ссылка)", "надо брать"),
@@ -58,23 +73,24 @@ export const Candidate: FC = () => {
             sx={{ width: 100, height: 100 }}
           />
         </ListItemAvatar>
-        <ListItemText primary="Штанников Евгений Павлович" />
-        <ListItemText secondary="телефон: +79859801993" />
-        <ListItemText secondary="почта: mail@google.com" />
-        <ListItemText secondary="город: Москва" />
+        <ListItemText primary={candidate?.firstName + ' ' + candidate?.middleName +' ' + candidate?.lastName} />
+        {candidate?.contacts && candidate?.contacts.map((contact) => (
+                                <ListItemText secondary={contact.type+':'+' ' + contact.value} />
+                            ))}
+        { candidate?.city && <ListItemText secondary={'город: ' + candidate?.city} />}
       </ListItem>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableBody>
             <TableRow>
               <TableCell component="th" scope="row">
-                <FunnelForCandidate rows={rows} funnelName='Техническое собеседование' vacanceName='Разработчик backend' nextFunnelStages={["Найм", "Отказ"]} ></FunnelForCandidate>
+                              <FunnelForCandidate rows={rows} funnelName='test' vacanceName='Разработчик backend' nextFunnelStages={["Найм", "Отказ"]} ></FunnelForCandidate>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
                 <OtherVacancies>
-                  <FunnelForCandidate rows={rows} funnelName='Отказали' vacanceName='Разработчик frontend (архив)' nextFunnelStages={["Технический директор", "Отказ"]} disableNextStages={true}></FunnelForCandidate>
+                  <FunnelForCandidate rows={rows} funnelName='Отказали' vacanceName='Разработчик frontend (архив)' disableNextStages={true}></FunnelForCandidate>
                 </OtherVacancies>
               </TableCell>
             </TableRow>

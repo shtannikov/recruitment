@@ -9,7 +9,7 @@ import { Box, Checkbox, DialogContentText, FormControlLabel, InputLabel, MenuIte
 import { FC } from 'react';
 
 interface Props {
-    nextFunnelStages: string[];
+    nextFunnelStages?: string[];
 };
 
 export const ChangeFunnelDialog: FC<Props> = (props) => {
@@ -69,7 +69,7 @@ export const ChangeFunnelDialog: FC<Props> = (props) => {
                                 label="Age"
                                 onChange={handleChange}
                             >
-                                {props.nextFunnelStages.map((row) => (
+                                {props.nextFunnelStages!.map((row) => (
                                     <MenuItem value={row}>{row}</MenuItem>
                                 ))}
                             </Select>
