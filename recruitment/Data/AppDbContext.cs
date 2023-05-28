@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using recruitment.data;
 
-public class DataContext : DbContext
+namespace recruitment.Data;
+
+public class AppDbContext : DbContext
 {
-    protected readonly IConfiguration Configuration;
+    private readonly IConfiguration Configuration;
 
-    public DataContext(IConfiguration configuration)
+    public AppDbContext(IConfiguration configuration)
     {
         Configuration = configuration;
     }
@@ -17,4 +18,6 @@ public class DataContext : DbContext
     }
 
     public DbSet<Candidate> Candidates { get; set; }
+    public DbSet<Vacancy> Vacancies { get; set; }
+    public DbSet<Funnel> Funnel  { get; set; }
 }

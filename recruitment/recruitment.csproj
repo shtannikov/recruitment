@@ -55,9 +55,6 @@
       <_ContentIncludedByDefault Remove="Pages\Shared\_Layout.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\Shared\_ValidationScriptsPartial.cshtml" />
     </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\recruitment.data\recruitment.data.csproj" />
-    </ItemGroup>
 
     <Target Name="EnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
         <!-- Ensure Node.js is installed -->

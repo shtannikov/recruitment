@@ -1,10 +1,12 @@
-﻿namespace recruitment.data
+﻿using recruitment.Data;
+
+namespace recruitment.data
 {
     public class CandidateRepository
     {
-        private readonly DataContext _context;
+        private readonly AppDbContext _context;
 
-        public CandidateRepository(DataContext context)
+        public CandidateRepository(AppDbContext context)
         {
             if (context == null) throw new ArgumentNullException("context");
             _context = context;
