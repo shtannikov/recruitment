@@ -1,4 +1,4 @@
-namespace recruitment.Models;
+namespace recruitment.Data;
 
 public enum UserRole
 {

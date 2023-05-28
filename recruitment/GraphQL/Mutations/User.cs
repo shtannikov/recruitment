@@ -1,4 +1,4 @@
-using recruitment.Models;
+using recruitment.Data;
 
 namespace recruitment.GraphQL;
 

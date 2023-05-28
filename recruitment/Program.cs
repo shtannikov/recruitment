@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using recruitment.Data;
 using recruitment.GraphQL;
-using recruitment.Models;
 using Microsoft.AspNetCore.Identity;
 using recruitment.data;
 
