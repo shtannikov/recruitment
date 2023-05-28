@@ -58,7 +58,9 @@ builder.Services.AddRazorPages();
 
 builder.Services
     .AddGraphQLServer()
-    .AddQueryType<Query>();
+    .AddAuthorization()
+    .AddQueryType<Query>()
+    .AddMutationType<Mutation>();
 
 var app = builder.Build();
 
