@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using recruitment.Data;
 
@@ -10,9 +11,11 @@ using recruitment.Data;
 namespace recruitment.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230530124633_AddFeedback")]
+    partial class AddFeedback
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
@@ -26,11 +29,9 @@ namespace recruitment.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("EmailConfirmed")
@@ -43,11 +44,9 @@ namespace recruitment.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
@@ -70,19 +69,11 @@ namespace recruitment.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("ApplicationUser");
                 });
 
             modelBuilder.Entity("recruitment.Data.Candidate", b =>
@@ -158,7 +149,7 @@ namespace recruitment.Data.Migrations
 
                     b.HasIndex("FunnelStageId");
 
-                    b.ToTable("Feedbacks");
+                    b.ToTable("Feedback");
                 });
 
             modelBuilder.Entity("recruitment.Data.Funnel", b =>

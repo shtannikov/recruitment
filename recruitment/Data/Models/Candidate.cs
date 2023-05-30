@@ -15,5 +15,7 @@ public class Candidate
 
     public int ElapsedDaysInCurrentStage { get; set; }
     public int CurrentStageId { get; set; }
-    public FunnelStage CurrentStage { get; set; }
+    public virtual FunnelStage CurrentStage { get; set; }
+ 
+    public virtual ICollection<Feedback> Feedbacks { get; set; }
 }

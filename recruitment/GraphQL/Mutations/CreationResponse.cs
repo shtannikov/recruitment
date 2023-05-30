@@ -10,9 +10,15 @@ public class CreationResponse
         Succeeded = true
     };
     
-    public static CreationResponse CreateErrorResponse(string[] validationErrors) => new()
+    public static CreationResponse CreateErrorResponse(IEnumerable<string> validationErrors) => new()
     {
         Succeeded = false,
-        ValidationErrors = validationErrors
+        ValidationErrors = validationErrors.ToArray()
+    };
+
+    public static CreationResponse CreateErrorResponse(string validationError) => new()
+    {
+        Succeeded = false,
+        ValidationErrors = new []{ validationError }
     };
 }

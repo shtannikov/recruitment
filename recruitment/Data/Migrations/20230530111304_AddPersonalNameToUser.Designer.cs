@@ -2,17 +2,20 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using recruitment.Data;
 
 #nullable disable
 
-namespace recruitment.Data.Migrations
+namespace recruitment.Migrations
 {
     [DbContext(typeof(AuthorizationDbContext))]
-    partial class AuthorizationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230530111304_AddPersonalNameToUser")]
+    partial class AddPersonalNameToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");

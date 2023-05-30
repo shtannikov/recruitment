@@ -15,9 +15,12 @@ public class AppDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+        options.UseLazyLoadingProxies();
     }
 
     public DbSet<Candidate> Candidates { get; set; }
     public DbSet<Vacancy> Vacancies { get; set; }
     public DbSet<Funnel> Funnel  { get; set; }
+    public DbSet<FunnelStage> FunnelStage { get; set; }
+    public DbSet<Feedback> Feedbacks { get; set; }
 }

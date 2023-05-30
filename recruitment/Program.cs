@@ -55,6 +55,10 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<IFeedbackProcessor, FeedbackProcessor>();
+builder.Services.AddTransient<IFunnelProcessor, FunnelProcessor>();
+
 builder.Services
     .AddGraphQLServer()
     .AddAuthorization()
