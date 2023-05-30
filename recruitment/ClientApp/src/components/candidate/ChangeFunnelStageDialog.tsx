@@ -5,8 +5,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { DialogContentText, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { FC } from 'react';
+import {Alert, DialogContentText, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import {ChangeEvent, FC} from 'react';
 
 interface Props {
     nextFunnelStages?: string[];
@@ -21,10 +21,23 @@ export const ChangeFunnelStageDialog: FC<Props> = (props) => {
         setDialogOpen(false);
     };
 
-    const [nextStage, setNextStage] = React.useState('');
+    const [nextStage, setNextStage] = React.useState<string | undefined>(undefined);
+    const [comment, setComment] = React.useState<string | undefined>(undefined);
+    const [isValidationError, setIsValidationError] = React.useState(false);
 
     const selectNextStage = (event: SelectChangeEvent) => {
         setNextStage(event.target.value as string);
+    };
+
+    const changeComment = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setComment(event.target.value);
+    };
+
+    const save = () => {
+        if (!comment || !nextStage)
+            setIsValidationError(true);
+        else
+            setDialogOpen(false);
     };
 
     return (
@@ -33,13 +46,23 @@ export const ChangeFunnelStageDialog: FC<Props> = (props) => {
             <Dialog open={dialogOpen} onClose={closeDialog}>
                 <DialogTitle>Смена этапа</DialogTitle>
                 <DialogContent>
+                    {
+                        isValidationError && !comment &&
+                        (<Alert severity="error" sx={{ marginBottom: 1 }}>Комментарий должен быть заполнен</Alert>)
+                    }
+                    {
+                        isValidationError && !nextStage &&
+                            (<Alert severity="error" sx={{ marginBottom: 1 }}>Должен быть выбран этап</Alert>)
+                    }
+
                     <DialogContentText>Комментарий по кандидату</DialogContentText>
                     <TextField
                         id="comment"
                         multiline
                         minRows={3}
                         maxRows={5}
-                        required={true}
+                        value={comment}
+                        onChange={changeComment}
                         sx={{ minWidth: 500, marginBottom: 2 }}
                     />
 
@@ -57,7 +80,7 @@ export const ChangeFunnelStageDialog: FC<Props> = (props) => {
                     </Select>
                     <DialogActions>
                         <Button onClick={closeDialog}>Закрыть</Button>
-                        <Button onClick={closeDialog} disabled>Сменить (в разработке)</Button>
+                        <Button onClick={save}>Сменить</Button>
                     </DialogActions>
                 </DialogContent>
             </Dialog>
