@@ -1,11 +1,26 @@
-import { Avatar, ListItem, ListItemAvatar, ListItemText, List, TableContainer, Table, TableCell, TableBody, TableRow, Paper } from '@mui/material';
+import {
+  Avatar,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  List,
+  TableContainer,
+  Table,
+  TableCell,
+  TableBody,
+  TableRow,
+  Paper
+} from '@mui/material';
 import {FC, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { gql } from "../../__generated__";
 import { useQuery } from "@apollo/client";
-import { CandidateStage } from './CandidateStage';
 import ResumePanel from './ResumePanel';
 import {usePageContext} from "../../utils/usePageContext";
+import {UserRole} from "../../__generated__/graphql";
+import {ChangeFunnelStageDialog} from "./ChangeFunnelStageDialog";
+import {useUserContext} from "../../utils/UserContext";
+import {FeedbackList} from "./FeedbackList";
 
 const GET_CANDIDATE = gql(`
     query GetCandidate($id: Int!) {
@@ -25,6 +40,18 @@ const GET_CANDIDATE = gql(`
             }
           }
         }
+
+                
+        feedbacks {
+          text
+          author {
+            personalName
+          }
+          funnelStage {
+            name
+          }
+          creationDateTimeUtc
+        }
       }
     }
 `);
@@ -37,12 +64,14 @@ export const Candidate: FC = () => {
 
   const { id } = useParams<{ id: string }>();
 
-     const { loading, data } = useQuery(
-       GET_CANDIDATE,
-       { variables: { id: Number(id) } }
-     );
-     
-  const candidate = data?.candidate;
+   const { data: candidateData } = useQuery(
+     GET_CANDIDATE,
+     { variables: { id: Number(id) } }
+   );
+
+  const { isLoading: isUserLoading, userRole } = useUserContext();
+
+  const candidate = candidateData?.candidate;
 
   return (
       <TableContainer component={Paper}>
@@ -67,10 +96,19 @@ export const Candidate: FC = () => {
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
-                 <CandidateStage 
-                     stage={candidate?.currentStage.name}
-                     vacancy={candidate?.currentStage.funnel.vacancy.name}
-                     nextStages={["Найм", "Отказ"]} />
+                <List>
+                  <ListItem>
+                    <ListItemText 
+                        primary={candidate?.currentStage.funnel.vacancy.name}
+                        secondary={candidate?.currentStage.name} />
+                    {isUserLoading && userRole != UserRole.HiringManager && <ChangeFunnelStageDialog />}
+                  </ListItem>
+                  { 
+                    candidate 
+                      && candidate.feedbacks.length > 0 
+                      && <FeedbackList feedbacks={candidate.feedbacks} /> 
+                  }
+                </List>
               </TableCell>
             </TableRow>
             <TableRow>

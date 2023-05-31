@@ -74,7 +74,7 @@ export const ChangeFunnelStageDialog: FC<Props> = (props) => {
                         onChange={selectNextStage}
                         sx={{ minWidth: 200 }}
                     >
-                        {props.nextFunnelStages!.map((row) => (
+                        {props.nextFunnelStages && props.nextFunnelStages!.map((row) => (
                             <MenuItem value={row}>{row}</MenuItem>
                         ))}
                     </Select>

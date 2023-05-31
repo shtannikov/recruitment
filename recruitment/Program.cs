@@ -7,7 +7,6 @@ using recruitment.data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<AuthorizationDbContext>(options =>
@@ -88,6 +87,6 @@ app.MapGet("/logout", async (httpContext) =>
     httpContext.Response.Redirect("/");
 });
 
-app.MapGraphQL().RequireAuthorization();
+app.MapGraphQL();
 
 app.Run();
