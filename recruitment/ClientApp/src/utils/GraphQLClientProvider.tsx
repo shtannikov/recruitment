@@ -1,6 +1,6 @@
 import {ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache, ServerError} from "@apollo/client";
-import {onError} from "@apollo/client/link/error";
 import React, {FC, ReactNode} from "react";
+import {onError} from "@apollo/client/link/error";
 
 interface ProviderProps {
     children: ReactNode;
@@ -8,7 +8,6 @@ interface ProviderProps {
 
 export const GraphQLClientProvider: FC<ProviderProps> = ({ children }) => {
     const [isAuthExpired, setIsAuthExpired] = React.useState(false);
-
     const forceToLoginPage = () => window.location.reload();
 
     const apolloClient = new ApolloClient({
@@ -16,11 +15,14 @@ export const GraphQLClientProvider: FC<ProviderProps> = ({ children }) => {
         cache: new InMemoryCache(),
         defaultOptions: {
             query: {
-                fetchPolicy: 'cache-first',
+                fetchPolicy: 'network-only',
             },
             mutate: {
                 fetchPolicy: 'no-cache',
             },
+            watchQuery: {
+                fetchPolicy: 'no-cache',
+            }
         },
         link: ApolloLink.from([
             onError(({ networkError }) => {
@@ -28,11 +30,11 @@ export const GraphQLClientProvider: FC<ProviderProps> = ({ children }) => {
                 if (serverError && serverError.statusCode === 401)
                     setIsAuthExpired(true);
             }),
-            new HttpLink({uri: '/graphql'})])
-    });   
-
-    if (isAuthExpired)
-        forceToLoginPage();
+            new HttpLink({uri: '/graphql' })])
+    });
+    
+        if (isAuthExpired)
+            forceToLoginPage();
 
     return (
         <ApolloProvider client={apolloClient}>

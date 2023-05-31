@@ -1,10 +1,8 @@
 import { FC } from "react";
-import { ListItem, ListItemText, List, TableContainer, TableHead, Table, TableCell, TableBody, TableRow, Paper } from '@mui/material';
-import { ChangeFunnelStageDialog } from './ChangeFunnelStageDialog';
-import {useUserContext} from "../../utils/UserContext";
-import {UserRole} from "../../__generated__/graphql";
+import { TableContainer, TableHead, Table, TableCell, TableBody, TableRow, Paper } from '@mui/material';
 
 interface Feedback {
+    id: number;
     text: string;
     author: {
         personalName: string;
@@ -34,7 +32,7 @@ export const FeedbackList: FC<Props> = ({ feedbacks }) => {
                 <TableBody>
                     {feedbacks.map((feedback) => (
                         <TableRow
-                            key={feedback.funnelStage.name}
+                            key={feedback.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell align="left">{feedback.text}</TableCell>

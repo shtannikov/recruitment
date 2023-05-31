@@ -14,13 +14,14 @@ import {
 import {FC, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { gql } from "../../__generated__";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import ResumePanel from './ResumePanel';
 import {usePageContext} from "../../utils/usePageContext";
 import {UserRole} from "../../__generated__/graphql";
 import {ChangeFunnelStageDialog} from "./ChangeFunnelStageDialog";
 import {useUserContext} from "../../utils/UserContext";
 import {FeedbackList} from "./FeedbackList";
+import * as React from "react";
 
 const GET_CANDIDATE = gql(`
     query GetCandidate($id: Int!) {
@@ -34,14 +35,21 @@ const GET_CANDIDATE = gql(`
         
         currentStage {
           name
+          order
           funnel {
             vacancy {
               name
             }
+            stages {
+              id
+              name
+              order
+            }
           }
         }
-                
+       
         feedbacks {
+          id
           text
           author {
             personalName
@@ -62,11 +70,16 @@ export const Candidate: FC = () => {
   }, []);
 
   const { id } = useParams<{ id: string }>();
+  const candidateId = Number(id);
 
-   const { data: candidateData } = useQuery(
+  const [getCandidate, { data: candidateData }] = useLazyQuery(
      GET_CANDIDATE,
-     { variables: { id: Number(id) } }
-   );
+     { variables: { id: candidateId } }
+  );
+
+   useEffect( () => {
+     getCandidate().catch(console.error);
+   }, [candidateId]);
 
   const { isLoading: isUserLoading, userRole } = useUserContext();
 
@@ -82,8 +95,6 @@ export const Candidate: FC = () => {
                   <ListItem>
                     <ListItemAvatar sx={{ pr: 4 }}>
                       <Avatar
-                          alt="Remy Sharp"
-                          src="/static/images/avatar/1.jpg"
                           sx={{ width: 100, height: 100 }}
                       />
                     </ListItemAvatar>
@@ -100,7 +111,16 @@ export const Candidate: FC = () => {
                     <ListItemText 
                         primary={candidate?.currentStage.funnel.vacancy.name}
                         secondary={candidate?.currentStage.name} />
-                    {isUserLoading && userRole != UserRole.HiringManager && <ChangeFunnelStageDialog />}
+                    {
+                      !isUserLoading 
+                        && userRole != UserRole.HiringManager 
+                        && candidate
+                        && <ChangeFunnelStageDialog
+                            candidateId={candidateId}
+                            currentStage={candidate?.currentStage}
+                            updateCandidate={() => getCandidate()}
+                        />
+                    }
                   </ListItem>
                   { 
                     candidate 

@@ -87,6 +87,7 @@ app.MapGet("/logout", async (httpContext) =>
     httpContext.Response.Redirect("/");
 });
 
-app.MapGraphQL();
+//app.MapGraphQL();
+app.MapGraphQL().RequireAuthorization();
 
 app.Run();

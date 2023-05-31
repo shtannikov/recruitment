@@ -55,11 +55,13 @@ public class FunnelProcessor : IFunnelProcessor
         if (validationErrors.Any())
             return CreationResponse.CreateErrorResponse(validationErrors);
 
-        candidate.CurrentStageId = nextStageId;
         var response = _feedbackProcessor.SaveFeedback(
             text: motivation,
             candidate,
             author: decisionMaker);
+
+        candidate.CurrentStageId = nextStageId;
+        candidate.ElapsedDaysInCurrentStage = 0;
 
         return response;
     }

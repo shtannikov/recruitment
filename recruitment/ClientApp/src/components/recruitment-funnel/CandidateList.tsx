@@ -30,19 +30,26 @@ export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {candidates.map((candidate) => (
-                        <TableRow
-                            key={candidate.id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row">
-                                <Link href={appNavigation.getCandidateUrl(candidate.id)} underline="hover">
-                                    {candidate.firstName} {candidate.middleName} {candidate.lastName}
-                                </Link>
-                            </TableCell>
-                            <TableCell align="right">{candidate.elapsedDaysInCurrentStage}</TableCell>
-                        </TableRow>
-                    ))}
+                    {candidates
+                        .sort((c1, c2) => 
+                            c1.elapsedDaysInCurrentStage > c2.elapsedDaysInCurrentStage
+                                ? -1
+                                : 1
+                        )
+                        .map((candidate) => (
+                            <TableRow
+                                key={candidate.id}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    <Link href={appNavigation.getCandidateUrl(candidate.id)} underline="hover">
+                                        {candidate.firstName} {candidate.middleName} {candidate.lastName}
+                                    </Link>
+                                </TableCell>
+                                <TableCell align="right">{candidate.elapsedDaysInCurrentStage}</TableCell>
+                            </TableRow>
+                        )
+                    )}
                 </TableBody>
             </Table>
         </TableContainer>

@@ -13,12 +13,14 @@ const GET_ACTIVE_VACANCIES = gql(`
 
 export function useVacanciesQuery() {
     return useQuery(
-        GET_ACTIVE_VACANCIES
+        GET_ACTIVE_VACANCIES,
+        { fetchPolicy: "cache-first" }
     ); 
 }
 
 export function useLazyVacanciesQuery() {
     return useLazyQuery(
-        GET_ACTIVE_VACANCIES
+        GET_ACTIVE_VACANCIES,
+        { fetchPolicy: "cache-first" }
     );
 }
