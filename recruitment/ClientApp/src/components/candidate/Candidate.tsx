@@ -40,7 +40,6 @@ const GET_CANDIDATE = gql(`
             }
           }
         }
-
                 
         feedbacks {
           text
