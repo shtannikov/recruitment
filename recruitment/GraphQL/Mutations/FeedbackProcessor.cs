@@ -27,7 +27,7 @@ public class FeedbackProcessor : IFeedbackProcessor
     {
         var trimmedText = text.Trim();
         if (string.IsNullOrEmpty(trimmedText))
-            CreationResponse.CreateErrorResponse(
+            return CreationResponse.CreateErrorResponse(
                 "Text can not be empty or contain white-space characters only");
 
         var feedback = new Feedback
