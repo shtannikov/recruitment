@@ -6,9 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 import {FC} from "react";
 import {useAppNavigation} from "../../utils/useAppNavigation";
+import { NavLink } from 'react-router-dom';
 
 export interface Candidate {
     id: number;
@@ -42,9 +42,9 @@ export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    <Link href={appNavigation.getCandidateUrl(candidate.id)} underline="hover">
+                                    <NavLink to={appNavigation.getCandidateUrl(candidate.id)} style={{ textDecoration: 'none' }}>
                                         {candidate.firstName} {candidate.middleName} {candidate.lastName}
-                                    </Link>
+                                    </NavLink>
                                 </TableCell>
                                 <TableCell align="right">{candidate.elapsedDaysInCurrentStage}</TableCell>
                             </TableRow>
