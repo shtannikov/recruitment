@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using recruitment.Data;
 using recruitment.GraphQL;
 using Microsoft.AspNetCore.Identity;
-using recruitment.data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +30,6 @@ builder.Services
     .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<AuthorizationDbContext>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddTransient<CandidateRepository>();
 
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, AuthorizationDbContext>();
