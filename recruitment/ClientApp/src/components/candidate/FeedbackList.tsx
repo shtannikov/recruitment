@@ -30,7 +30,7 @@ export const FeedbackList: FC<Props> = ({ feedbacks }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {feedbacks.map((feedback) => (
+                    {feedbacks.reverse().map((feedback) => (
                         <TableRow
                             key={feedback.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
