@@ -13,7 +13,7 @@ public class Candidate
 
     public string City { get; set; }
 
-    public int ElapsedDaysInCurrentStage { get; set; }
+    public DateTime StageEntranceDateTimeUtc { get; set; }
     public int CurrentStageId { get; set; }
     public virtual FunnelStage CurrentStage { get; set; }
  

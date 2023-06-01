@@ -61,7 +61,7 @@ public class FunnelProcessor : IFunnelProcessor
             author: decisionMaker);
 
         candidate.CurrentStageId = nextStageId;
-        candidate.ElapsedDaysInCurrentStage = 0;
+        candidate.StageEntranceDateTimeUtc = DateTime.UtcNow;
 
         return response;
     }

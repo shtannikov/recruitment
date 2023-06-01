@@ -24,7 +24,7 @@ const GET_FUNNEL = gql(`
             firstName
             middleName
             lastName
-            elapsedDaysInCurrentStage
+            stageEntranceDateTimeUtc
           }
         }
       }

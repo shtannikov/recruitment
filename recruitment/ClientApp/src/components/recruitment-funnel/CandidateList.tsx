@@ -15,10 +15,16 @@ export interface Candidate {
     firstName: string;
     middleName?: string | null;
     lastName: string;
-    elapsedDaysInCurrentStage: number;
+    stageEntranceDateTimeUtc: string;
 }
 export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =>  {
     const appNavigation = useAppNavigation();
+
+    const getElapsedDaysInCurrentStage = (stageEntranceDateTimeUtc: string) => {
+        const msDiff = Math.abs(
+            new Date(stageEntranceDateTimeUtc).getTime() - new Date().getTime());
+        return Math.floor(msDiff / (1000 * 60 * 60 * 24));
+    }
 
     return (
         <TableContainer sx={{ minWidth: 400, maxWidth: 700 }} component={Paper}>
@@ -31,6 +37,12 @@ export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =
                 </TableHead>
                 <TableBody>
                     {candidates
+                        .map(c => {
+                            return {
+                                ...c,
+                                elapsedDaysInCurrentStage: getElapsedDaysInCurrentStage(c.stageEntranceDateTimeUtc)
+                            };
+                        })
                         .sort((c1, c2) => 
                             c1.elapsedDaysInCurrentStage > c2.elapsedDaysInCurrentStage
                                 ? -1
