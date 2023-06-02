@@ -6,7 +6,7 @@
         <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
         <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
         <IsPackable>false</IsPackable>
-        <SpaRoot>..\frontend\</SpaRoot>
+        <SpaRoot>..\..\frontend\</SpaRoot>
         <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -32,6 +32,9 @@
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**">
             <Link>frontend\%(RecursiveDir)/%(FileName)%(Extension)</Link>
         </None>
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="tests\FeedbackProcessorTests.cs" />
     </ItemGroup>
 
     <Target Name="EnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
