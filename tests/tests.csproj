@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\recruitment\recruitment.csproj" />
+      <ProjectReference Include="..\backend\recruitment.csproj" />
     </ItemGroup>
 
 </Project>
