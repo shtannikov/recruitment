@@ -1,4 +1,4 @@
-﻿namespace recruitment.Data;
+namespace recruitment.Data;
 
 public class Candidate
 {
