@@ -25,7 +25,7 @@ public class CandidatesMutation
             nextStageId,
             motivation,
             author!);
-        
+
         if (response.Succeeded)
             await dbContext.SaveChangesAsync();
         return response;

@@ -24,11 +24,11 @@ public class AppDbContext : DbContext
         SetDateTimeUtcConverter(modelBuilder);
     }
 
-    public DbSet<Candidate> Candidates { get; set; }
+    public virtual DbSet<Candidate> Candidates { get; set; }
     public DbSet<Vacancy> Vacancies { get; set; }
     public DbSet<Funnel> Funnel  { get; set; }
-    public DbSet<FunnelStage> FunnelStage { get; set; }
-    public DbSet<Feedback> Feedbacks { get; set; }
+    public virtual DbSet<FunnelStage> FunnelStage { get; set; }
+    public virtual DbSet<Feedback> Feedbacks { get; set; }
 
     private static void SetDateTimeUtcConverter(ModelBuilder modelBuilder)
     {

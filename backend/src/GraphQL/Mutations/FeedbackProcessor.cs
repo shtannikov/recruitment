@@ -13,11 +13,14 @@ public interface IFeedbackProcessor
 public class FeedbackProcessor : IFeedbackProcessor
 {
     private readonly AppDbContext _dbContext;
+    private readonly IDateTimeProvider _dateTimeProvider;
 
     public FeedbackProcessor(
-        AppDbContext dbContext)
+        AppDbContext dbContext,
+        IDateTimeProvider dateTimeProvider)
     {
         _dbContext = dbContext;
+        _dateTimeProvider = dateTimeProvider;
     }
 
     public CreationResponse SaveFeedback(
@@ -36,7 +39,7 @@ public class FeedbackProcessor : IFeedbackProcessor
             AuthorId = author.Id,
             CandidateId = candidate.Id,
             FunnelStageId = candidate.CurrentStageId,
-            CreationDateTimeUtc = DateTime.UtcNow
+            CreationDateTimeUtc = _dateTimeProvider.GetUtcNow()
         };
         _dbContext.Feedbacks.Add(feedback);
 

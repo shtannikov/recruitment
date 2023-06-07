@@ -53,6 +53,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddDateTimeProvider();
 builder.Services.AddTransient<IFeedbackProcessor, FeedbackProcessor>();
 builder.Services.AddTransient<IFunnelProcessor, FunnelProcessor>();
 

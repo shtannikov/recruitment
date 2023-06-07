@@ -15,13 +15,16 @@ public interface IFunnelProcessor
 public class FunnelProcessor : IFunnelProcessor
 {
     private readonly AppDbContext _dbContext;
+    private readonly IDateTimeProvider _dateTimeProvider;
     private readonly IFeedbackProcessor _feedbackProcessor;
 
     public FunnelProcessor(
         AppDbContext dbContext,
+        IDateTimeProvider dateTimeProvider,
         IFeedbackProcessor feedbackProcessor)
     {
         _dbContext = dbContext;
+        _dateTimeProvider = dateTimeProvider;
         _feedbackProcessor = feedbackProcessor;
     }
 
@@ -34,7 +37,6 @@ public class FunnelProcessor : IFunnelProcessor
         var validationErrors = new List<string>();
 
         var candidate = _dbContext.Candidates
-            .Include(c => c.CurrentStage)
             .SingleOrDefault(c => c.Id == candidateId);
         if (candidate == null)
             validationErrors.Add($"Candidate with Id {candidateId} is not found");
@@ -42,7 +44,7 @@ public class FunnelProcessor : IFunnelProcessor
         var nextStage = _dbContext.FunnelStage
             .SingleOrDefault(s => s.Id == nextStageId);
         if (nextStage == null)
-            validationErrors.Add($"Funnel stage with Id {candidateId} is not found");
+            validationErrors.Add($"Funnel stage with Id {nextStageId} is not found");
 
         if (validationErrors.Any())
             return CreationResponse.CreateErrorResponse(validationErrors);
@@ -61,7 +63,7 @@ public class FunnelProcessor : IFunnelProcessor
             author: decisionMaker);
 
         candidate.CurrentStageId = nextStageId;
-        candidate.StageEntranceDateTimeUtc = DateTime.UtcNow;
+        candidate.StageEntranceDateTimeUtc = _dateTimeProvider.GetUtcNow();
 
         return response;
     }
