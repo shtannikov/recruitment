@@ -31,8 +31,8 @@ export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>ФИО</TableCell>
-                        <TableCell align="right">Время на этапе (в днях)</TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell align="right">Elapsed days in the stage</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

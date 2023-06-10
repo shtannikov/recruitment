@@ -27,7 +27,7 @@ export const VacanciesFolder: FC = () => {
                 <ListItemIcon>
                     <FolderIcon />
                 </ListItemIcon>
-                <ListItemText primary="Открытые вакансии" />
+                <ListItemText primary="Active vacancies" />
                 {isFolderOpen ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={isFolderOpen} unmountOnExit>

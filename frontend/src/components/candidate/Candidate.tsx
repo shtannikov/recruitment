@@ -63,7 +63,7 @@ const GET_CANDIDATE = gql(`
 export const Candidate: FC = () => {
   const pageContext = usePageContext();
   useEffect(() => {
-    pageContext.setTitle("Анкета кандидата");
+    pageContext.setTitle("Candidate profile");
   }, [pageContext]);
 
   const { id } = useParams<{ id: string }>();

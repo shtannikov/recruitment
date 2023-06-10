@@ -43,8 +43,8 @@ export const RecruitmentFunnel: FC = () => {
     useEffect(() => {
         const vacancy = data?.recruitmentFunnel?.vacancy.name;
         const title = vacancy
-            ? `Воронка найма / ${vacancy}`
-            : "Воронка найма";
+            ? `Recruitment funnel / ${vacancy}`
+            : "Recruitment funnel";
         pageContext.setTitle(title);
     }, [data, pageContext]);
 

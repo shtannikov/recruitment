@@ -23,10 +23,10 @@ export const FeedbackList: FC<Props> = ({ feedbacks }) => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell align="left">Комментарий</TableCell>
-                        <TableCell align="left">Этап</TableCell>
-                        <TableCell align="left">Автор</TableCell>
-                        <TableCell align="left">Дата</TableCell>
+                        <TableCell align="left">Comment</TableCell>
+                        <TableCell align="left">Stage</TableCell>
+                        <TableCell align="left">Author</TableCell>
+                        <TableCell align="left">Date</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

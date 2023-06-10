@@ -90,20 +90,20 @@ export const ChangeFunnelStageDialog: FC<Props> = ({ candidateId, currentStage, 
     return nextStages.length === 0
         ? null
         : (<>
-            <Button variant="contained" onClick={openDialog}>Сменить этап</Button>
+            <Button variant="contained" onClick={openDialog}>Change stage</Button>
             <Dialog open={dialogOpen} onClose={closeDialog}>
-                <DialogTitle>Смена этапа</DialogTitle>
+                <DialogTitle>Stage change</DialogTitle>
                 <DialogContent>
                     {
                         isValidationError && !comment &&
-                        (<Alert severity="error" sx={{ marginBottom: 1 }}>Комментарий должен быть заполнен</Alert>)
+                        (<Alert severity="error" sx={{ marginBottom: 1 }}>Comment can't be empty</Alert>)
                     }
                     {
                         isValidationError && !selectedNextStageId &&
-                            (<Alert severity="error" sx={{ marginBottom: 1 }}>Должен быть выбран этап</Alert>)
+                            (<Alert severity="error" sx={{ marginBottom: 1 }}>Stage must be selected</Alert>)
                     }
 
-                    <DialogContentText>Комментарий по кандидату</DialogContentText>
+                    <DialogContentText>Comment about the candidate</DialogContentText>
                     <TextField
                         id="comment"
                         multiline
@@ -114,7 +114,7 @@ export const ChangeFunnelStageDialog: FC<Props> = ({ candidateId, currentStage, 
                         sx={{ minWidth: 500, marginBottom: 2 }}
                     />
 
-                    <InputLabel id="stage-label">Этап</InputLabel>
+                    <InputLabel id="stage-label">Stage</InputLabel>
                     <Select
                         labelId="stage-label"
                         id="stage-select"
@@ -127,8 +127,8 @@ export const ChangeFunnelStageDialog: FC<Props> = ({ candidateId, currentStage, 
                         ))}
                     </Select>
                     <DialogActions>
-                        <Button onClick={closeDialog}>Закрыть</Button>
-                        <Button onClick={save}>Сменить</Button>
+                        <Button onClick={closeDialog}>Close</Button>
+                        <Button onClick={save}>Change</Button>
                     </DialogActions>
                 </DialogContent>
             </Dialog>

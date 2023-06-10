@@ -12,23 +12,23 @@ export const HiringManagerSidebar: FC = () => {
     return (
         <List component="nav">
             <VacanciesFolder />
-            <Tooltip title="В разработке">
+            <Tooltip title="We're working on this section">
                 <ListItem disablePadding>
                     <ListItemButton disabled>
                         <ListItemIcon>
                             <LibraryAddIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Заявка на вакансию" />
+                        <ListItemText primary="New vacancy request" />
                     </ListItemButton>
                 </ListItem>
             </Tooltip>
-            <Tooltip title="В разработке">
+            <Tooltip title="We're working on this section">
                 <ListItem disablePadding>
                     <ListItemButton disabled>
                         <ListItemIcon>
                             <SettingsIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Настройки" />
+                        <ListItemText primary="Settings" />
                     </ListItemButton>
                 </ListItem>
             </Tooltip>

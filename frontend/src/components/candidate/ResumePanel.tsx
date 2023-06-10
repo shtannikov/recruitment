@@ -48,22 +48,22 @@ export default function ResumePanel() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Резюме HH" {...accessibilityProps(0)} />
-          <Tab label="Резюме PDF" {...accessibilityProps(1)} />
+          <Tab label="LinkedIn CV" {...accessibilityProps(0)} />
+          <Tab label="PDF CV" {...accessibilityProps(1)} />
         </Tabs>
       </Box>
       <ResumeTab value={value} index={0}>
           <Typography variant="h6" gutterBottom>
-              Fullstack Разработчик
+              Fullstack developer
           </Typography>
           <Typography variant="body2" gutterBottom>
-              Занятость: полная занятость, частичная занятость, проектная работа
+              Employment: full-time, part-time, project-based work.
           </Typography>
           <Typography variant="body2" gutterBottom>
-              График работы: полный день, гибкий график, удаленная работа
+              Work schedule: full-time, flexible schedule, remote work.
           </Typography>
           <Typography variant="body2" gutterBottom>
-              Желательное время в пути до работы: не имеет значения
+              Desired commute time: doesn't matter.
           </Typography>
       </ResumeTab>
       <ResumeTab value={value} index={1}>

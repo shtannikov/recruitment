@@ -12,23 +12,23 @@ export const RecruiterSidebar: FC = () => {
     return (
         <List component="nav">
             <VacanciesFolder />
-            <Tooltip title="В разработке">
+            <Tooltip title="We're working on this section">
                 <ListItem disablePadding>
                     <ListItemButton disabled>
                         <ListItemIcon>
                             <FolderCopyIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Управление вакансиями" />
+                        <ListItemText primary="Vacancies management" />
                     </ListItemButton>
                 </ListItem>
             </Tooltip>
-            <Tooltip title="В разработке">
+            <Tooltip title="We're working on this section">
                 <ListItem disablePadding>
                     <ListItemButton disabled>
                         <ListItemIcon>
                             <SettingsIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Настройки" />
+                        <ListItemText primary="Settings" />
                     </ListItemButton>
                 </ListItem>
             </Tooltip>

@@ -15,7 +15,7 @@ export const NavMenu: FC = () => {
             </NavItem>         
           <ul className="navbar-nav flex-grow">
             <NavItem>
-                <a style={{ textDecoration: "none" }} className="text-dark" href={'/logout'}>Выйти</a>
+                <a style={{ textDecoration: "none" }} className="text-dark" href={'/logout'}>Logout</a>
             </NavItem>
           </ul>
         </Navbar>
