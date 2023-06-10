@@ -17,7 +17,7 @@ const documents = {
     "\n    mutation MoveToNextStage($candidateId: Int!, $nextStageId: Int!, $motivation: String!) {\n      candidates {\n        moveToNextFunnelStage(\n            candidateId: $candidateId,\n            nextStageId: $nextStageId,\n            motivation: $motivation\n          ) \n        {\n          succeeded\n          validationErrors\n        }\n      }\n    }\n": types.MoveToNextStageDocument,
     "\n    query GetFunnel($id: Int!) {\n      recruitmentFunnel(id: $id) {\n        vacancy {\n            name\n        }\n        stages {\n          id,\n          name,\n          candidates {\n            id,\n            firstName\n            middleName\n            lastName\n            stageEntranceDateTimeUtc\n          }\n        }\n      }\n    }\n": types.GetFunnelDocument,
     "\n    query GetUserRole {\n      userSettings {\n        userRole\n      }\n    }\n": types.GetUserRoleDocument,
-    "\n    query GetActiveVacancies {\n        activeVacancies {\n            id,\n            name,\n            recruitemtFunnelId,\n        }\n    }\n": types.GetActiveVacanciesDocument,
+    "\n    query GetActiveVacancies {\n        activeVacancies {\n            id,\n            name,\n            recruitmentFunnelId,\n        }\n    }\n": types.GetActiveVacanciesDocument,
 };
 
 /**
@@ -53,7 +53,7 @@ export function gql(source: "\n    query GetUserRole {\n      userSettings {\n  
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n    query GetActiveVacancies {\n        activeVacancies {\n            id,\n            name,\n            recruitemtFunnelId,\n        }\n    }\n"): (typeof documents)["\n    query GetActiveVacancies {\n        activeVacancies {\n            id,\n            name,\n            recruitemtFunnelId,\n        }\n    }\n"];
+export function gql(source: "\n    query GetActiveVacancies {\n        activeVacancies {\n            id,\n            name,\n            recruitmentFunnelId,\n        }\n    }\n"): (typeof documents)["\n    query GetActiveVacancies {\n        activeVacancies {\n            id,\n            name,\n            recruitmentFunnelId,\n        }\n    }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

@@ -6,7 +6,7 @@ const GET_ACTIVE_VACANCIES = gql(`
         activeVacancies {
             id,
             name,
-            recruitemtFunnelId,
+            recruitmentFunnelId,
         }
     }
 `);

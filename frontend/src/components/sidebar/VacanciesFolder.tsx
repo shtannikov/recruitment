@@ -34,7 +34,7 @@ export const VacanciesFolder: FC = () => {
                 <List component="nav" disablePadding sx={{ flexDirection: "column" }}>
                     {
                         !loading && data?.activeVacancies.map((vacancy) => (
-                            <ListItemButton sx={{ paddingLeft: 10 }} href={appNavigation.getFunnelUrl(vacancy.recruitemtFunnelId)}>
+                            <ListItemButton sx={{ paddingLeft: 10 }} href={appNavigation.getFunnelUrl(vacancy.recruitmentFunnelId)}>
                                 <ListItemText primary={vacancy.name} />
                             </ListItemButton>
                         ))
