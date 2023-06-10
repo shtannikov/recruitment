@@ -7,7 +7,7 @@ public class AdministrationMutation
 {
     public async Task<CreationResponse> CreateUser(
         [Service] UserManager<ApplicationUser> userManager,
-        User newUser)
+        NewUser newUser)
     {
         var creationResult = await userManager.CreateAsync(
             new ApplicationUser { UserName = newUser.Email, Email = newUser.Email },
