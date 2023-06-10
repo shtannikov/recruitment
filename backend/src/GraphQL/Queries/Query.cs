@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using recruitment.Data;
 
 namespace recruitment.GraphQL;
@@ -11,7 +10,7 @@ public class Query
     public UserSettingsQuery UserSettings => new UserSettingsQuery();
 
     public Funnel? GetRecruitmentFunnel(int id, [Service] AppDbContext dbContext) =>
-        dbContext.Funnel
+        dbContext.Funnels
             .SingleOrDefault(f => f.Id == id);
 
     public Candidate? GetCandidate(int id, [Service] AppDbContext dbContext) =>

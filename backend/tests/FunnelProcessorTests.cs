@@ -241,7 +241,7 @@ public class FunnelProcessorTests
 
         mockDbContext.Setup(c => c.Candidates)
             .Returns(mockCandidateSet.Object);
-        mockDbContext.Setup(c => c.FunnelStage)
+        mockDbContext.Setup(c => c.FunnelStages)
             .Returns(mockStageSet.Object);
 
         return mockDbContext;

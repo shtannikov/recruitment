@@ -5,16 +5,16 @@ namespace recruitment.Data;
 
 public class AppDbContext : DbContext
 {
-    private readonly IConfiguration Configuration;
+    private readonly IConfiguration _configuration;
 
     public AppDbContext(IConfiguration configuration)
     {
-        Configuration = configuration;
+        _configuration = configuration;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+        options.UseSqlite(_configuration.GetConnectionString("DefaultConnection"));
         options.UseLazyLoadingProxies();
     }
 
@@ -24,10 +24,10 @@ public class AppDbContext : DbContext
         SetDateTimeUtcConverter(modelBuilder);
     }
 
-    public virtual DbSet<Candidate> Candidates { get; set; }
     public DbSet<Vacancy> Vacancies { get; set; }
-    public DbSet<Funnel> Funnel  { get; set; }
-    public virtual DbSet<FunnelStage> FunnelStage { get; set; }
+    public DbSet<Funnel> Funnels  { get; set; }
+    public virtual DbSet<FunnelStage> FunnelStages { get; set; }
+    public virtual DbSet<Candidate> Candidates { get; set; }
     public virtual DbSet<Feedback> Feedbacks { get; set; }
 
     private static void SetDateTimeUtcConverter(ModelBuilder modelBuilder)

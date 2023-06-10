@@ -41,7 +41,7 @@ public class FunnelProcessor : IFunnelProcessor
         if (candidate == null)
             validationErrors.Add($"Candidate with Id {candidateId} is not found");
         
-        var nextStage = _dbContext.FunnelStage
+        var nextStage = _dbContext.FunnelStages
             .SingleOrDefault(s => s.Id == nextStageId);
         if (nextStage == null)
             validationErrors.Add($"Funnel stage with Id {nextStageId} is not found");
