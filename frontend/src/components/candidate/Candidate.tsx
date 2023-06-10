@@ -29,9 +29,6 @@ const GET_CANDIDATE = gql(`
         firstName
         middleName
         lastName
-        city
-        email
-        mobilePhone
         
         currentStage {
           name

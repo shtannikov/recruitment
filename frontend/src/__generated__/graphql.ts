@@ -25,7 +25,7 @@ export type AdministrationMutation = {
 
 
 export type AdministrationMutationCreateUserArgs = {
-  newUser: UserInput;
+  newUser: NewUserInput;
 };
 
 export type ApplicationUser = {
@@ -56,16 +56,13 @@ export enum ApplyPolicy {
 
 export type Candidate = {
   __typename?: 'Candidate';
-  city: Scalars['String']['output'];
   currentStage: FunnelStage;
   currentStageId: Scalars['Int']['output'];
-  email: Scalars['String']['output'];
   feedbacks: Array<Feedback>;
   firstName: Scalars['String']['output'];
   id: Scalars['Int']['output'];
   lastName: Scalars['String']['output'];
   middleName?: Maybe<Scalars['String']['output']>;
-  mobilePhone: Scalars['String']['output'];
   stageEntranceDateTimeUtc: Scalars['DateTime']['output'];
 };
 
@@ -123,6 +120,12 @@ export type Mutation = {
   candidates: CandidatesMutation;
 };
 
+export type NewUserInput = {
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  role: UserRole;
+};
+
 export type Query = {
   __typename?: 'Query';
   activeVacancies: Array<Vacancy>;
@@ -139,12 +142,6 @@ export type QueryCandidateArgs = {
 
 export type QueryRecruitmentFunnelArgs = {
   id: Scalars['Int']['input'];
-};
-
-export type UserInput = {
-  email: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-  role: UserRole;
 };
 
 export enum UserRole {
@@ -171,7 +168,7 @@ export type GetCandidateQueryVariables = Exact<{
 }>;
 
 
-export type GetCandidateQuery = { __typename?: 'Query', candidate?: { __typename?: 'Candidate', firstName: string, middleName?: string | null, lastName: string, city: string, email: string, mobilePhone: string, currentStage: { __typename?: 'FunnelStage', name: string, order: number, funnel: { __typename?: 'Funnel', vacancy: { __typename?: 'Vacancy', name: string }, stages: Array<{ __typename?: 'FunnelStage', id: number, name: string, order: number }> } }, feedbacks: Array<{ __typename?: 'Feedback', id: number, text: string, creationDateTimeUtc: any, author: { __typename?: 'ApplicationUser', personalName: string }, funnelStage: { __typename?: 'FunnelStage', name: string } }> } | null };
+export type GetCandidateQuery = { __typename?: 'Query', candidate?: { __typename?: 'Candidate', firstName: string, middleName?: string | null, lastName: string, currentStage: { __typename?: 'FunnelStage', name: string, order: number, funnel: { __typename?: 'Funnel', vacancy: { __typename?: 'Vacancy', name: string }, stages: Array<{ __typename?: 'FunnelStage', id: number, name: string, order: number }> } }, feedbacks: Array<{ __typename?: 'Feedback', id: number, text: string, creationDateTimeUtc: any, author: { __typename?: 'ApplicationUser', personalName: string }, funnelStage: { __typename?: 'FunnelStage', name: string } }> } | null };
 
 export type MoveToNextStageMutationVariables = Exact<{
   candidateId: Scalars['Int']['input'];
@@ -200,7 +197,7 @@ export type GetActiveVacanciesQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetActiveVacanciesQuery = { __typename?: 'Query', activeVacancies: Array<{ __typename?: 'Vacancy', id: number, name: string, recruitmentFunnelId: number }> };
 
 
-export const GetCandidateDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCandidate"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"candidate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"middleName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"mobilePhone"}},{"kind":"Field","name":{"kind":"Name","value":"currentStage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"order"}},{"kind":"Field","name":{"kind":"Name","value":"funnel"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacancy"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"stages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"order"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"feedbacks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"personalName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"funnelStage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"creationDateTimeUtc"}}]}}]}}]}}]} as unknown as DocumentNode<GetCandidateQuery, GetCandidateQueryVariables>;
+export const GetCandidateDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCandidate"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"candidate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"middleName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"currentStage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"order"}},{"kind":"Field","name":{"kind":"Name","value":"funnel"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacancy"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"stages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"order"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"feedbacks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"personalName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"funnelStage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"creationDateTimeUtc"}}]}}]}}]}}]} as unknown as DocumentNode<GetCandidateQuery, GetCandidateQueryVariables>;
 export const MoveToNextStageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"MoveToNextStage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"candidateId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"nextStageId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"motivation"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"candidates"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"moveToNextFunnelStage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"candidateId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"candidateId"}}},{"kind":"Argument","name":{"kind":"Name","value":"nextStageId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"nextStageId"}}},{"kind":"Argument","name":{"kind":"Name","value":"motivation"},"value":{"kind":"Variable","name":{"kind":"Name","value":"motivation"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"succeeded"}},{"kind":"Field","name":{"kind":"Name","value":"validationErrors"}}]}}]}}]}}]} as unknown as DocumentNode<MoveToNextStageMutation, MoveToNextStageMutationVariables>;
 export const GetFunnelDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetFunnel"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"recruitmentFunnel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacancy"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"stages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"candidates"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"middleName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"stageEntranceDateTimeUtc"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetFunnelQuery, GetFunnelQueryVariables>;
 export const GetUserRoleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserRole"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userRole"}}]}}]}}]} as unknown as DocumentNode<GetUserRoleQuery, GetUserRoleQueryVariables>;
