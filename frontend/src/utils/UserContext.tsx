@@ -1,4 +1,4 @@
-import React, {createContext, FC, ReactNode, useContext, useEffect, useState} from 'react';
+import React, {createContext, FC, ReactNode, useContext} from 'react';
 import {useQuery} from "@apollo/client";
 import {gql} from "../__generated__";
 import {UserRole} from "../__generated__/graphql";

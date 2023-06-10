@@ -87,7 +87,7 @@ export const ChangeFunnelStageDialog: FC<Props> = ({ candidateId, currentStage, 
             .filter(s => s.order > currentStage.order);
     }, [currentStage]);
 
-    return nextStages.length == 0
+    return nextStages.length === 0
         ? null
         : (<>
             <Button variant="contained" onClick={openDialog}>Сменить этап</Button>

@@ -46,7 +46,7 @@ export const RecruitmentFunnel: FC = () => {
             ? `Воронка найма / ${vacancy}`
             : "Воронка найма";
         pageContext.setTitle(title);
-    }, [loading]);
+    }, [data, pageContext]);
 
     const [currentIndex, setCurrentIndex] = React.useState(0);
 

@@ -67,7 +67,7 @@ export const Candidate: FC = () => {
   const pageContext = usePageContext();
   useEffect(() => {
     pageContext.setTitle("Анкета кандидата");
-  }, []);
+  }, [pageContext]);
 
   const { id } = useParams<{ id: string }>();
   const candidateId = Number(id);
@@ -79,7 +79,7 @@ export const Candidate: FC = () => {
 
    useEffect( () => {
      getCandidate().catch(console.error);
-   }, [candidateId]);
+   }, [getCandidate]);
 
   const { isLoading: isUserLoading, userRole } = useUserContext();
 
@@ -113,7 +113,7 @@ export const Candidate: FC = () => {
                         secondary={candidate?.currentStage.name} />
                     {
                       !isUserLoading 
-                        && userRole != UserRole.HiringManager 
+                        && userRole !== UserRole.HiringManager 
                         && candidate
                         && <ChangeFunnelStageDialog
                             candidateId={candidateId}
