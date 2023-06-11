@@ -10,7 +10,12 @@ public class AdministrationMutation
         NewUser newUser)
     {
         var creationResult = await userManager.CreateAsync(
-            new ApplicationUser { UserName = newUser.Email, Email = newUser.Email },
+            new ApplicationUser
+            {
+                PersonalName = newUser.PersonalName,
+                UserName = newUser.Email,
+                Email = newUser.Email
+            },
             newUser.Password);
 
         if (creationResult.Succeeded)
@@ -22,7 +27,7 @@ public class AdministrationMutation
                 ? CreationResponse.CreateSuccessResponse()
                 : CreateErrorResponse(roleUpdatingResult.Errors);
         }
- 
+
         return CreateErrorResponse(creationResult.Errors);
     }
 
