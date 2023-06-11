@@ -1,6 +1,7 @@
-## Демо
+## Demo
 
-![demo](https://github.com/shtannikov/recruitment/assets/31800676/d6f98f8f-fe1f-4db2-bef1-75fb4cf39df9)
+![demo](https://github.com/shtannikov/recruitment/assets/31800676/72b6db7a-8140-4e1c-b8a7-86b6ff1a7adf)
+
 
 ## Описание задачи
 
@@ -20,7 +21,7 @@
 
 ❌ Сбор статистики и формирование отчетности
 
-## Описание решения
+## Solution description
 
 https://www.notion.so/shtannikov/e74c4d3170824326b2f4f0f54bcf7da5
 
@@ -40,28 +41,28 @@ https://www.notion.so/shtannikov/e74c4d3170824326b2f4f0f54bcf7da5
 1. Открыть консоль в папке с recruitment.csproj
 2. Выполнить команду `dotnet run --configuration Debug`
 
-## Доступ к системе
+## System access
 
 ### Production
 
-~~Адрес production-версии системы: http://158.160.63.240~~ 
+~~Link to the production version: http://158.160.63.240~~ 
 
-UPD: production выключен
+UPD: production turned off
 
-### Готовые учетные записи
+### Prepared accounts
 
-В зависимости от роли платформа открывает разные возможности. Для того, чтобы в этом убедиться, в системе заведены учётные записи с разными ролями.
+Depending on the role, the platform opens up different opportunities. In order to verify this, the system has prepared accounts with different roles.
 
-Вот они:
+Here they are:
 
-- нанимающий менеджер: hiring-manager@test.ru
-- рекрутер: recruiter@test.ru
-- ведущий рекрутер: lead-recruiter@test.ru
+- hiring manager: hiring-manager@test.com
+- recruiter: recruiter@test.com
+- lead recruiter: lead-recruiter@test.com
 
-Для простоты переключения между учётками, у всех учёток стоит один пароль.
+For easy switching between accounts, all accounts have the same password.
 
-<b>Пароль: JzHwPA5_!vTwYVW</b>
+<b>Password: JzHwPA5_!vTwYVW</b>
 
-### Добавление новой учётной записи
+### Adding a new account
 
-Инструкция и live демо доступны по ссылке в Notion: https://shtannikov.notion.site/ee324577c73743f08ba09695f5526589
+Instructions and a live demo are available via the link in Notion: https://shtannikov.notion.site/ee324577c73743f08ba09695f5526589
