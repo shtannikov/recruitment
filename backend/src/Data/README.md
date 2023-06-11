@@ -1,2 +1,2 @@
-- Для автогенерации миграции нужно выполнить команду `dotnet ef migrations add {NAME} --context AppDbContext`
-- Для применения миграций нужно выполнить команду `dotnet ef database update --context AppDbContext`
+- Command to generate code-first migration: `dotnet ef migrations add {MIGRATION_NAME} --context AppDbContext`
+- Command to apply code-first migration: `dotnet ef database update --context AppDbContext`
