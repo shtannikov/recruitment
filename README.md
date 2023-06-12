@@ -3,43 +3,41 @@
 ![demo](https://github.com/shtannikov/recruitment/assets/31800676/72b6db7a-8140-4e1c-b8a7-86b6ff1a7adf)
 
 
-## Описание задачи
+## Hackathon task description
 
-Автоматизировать полный цикл подбора кандидата на вакансию с момента заявки до выхода нового сотрудника.
+Automate the entire cycle of candidate selection for a job vacancy: from the moment of application to the onboarding of a new employee.
 
-Необходимо решить следующие задачи:
+The system should include the following components:
 
-❌ Поиск и подбор необходимых кандидатов на вакансию (Возможность интеграции с HH.ru и другими сервисами)
+❌ Integrations with various sourcing channels such as job boards, social media, referrals, and career sites.
 
-✅ Контроль всех этапов подбора сотрудника (пример этапов: создание заявки на подбор, поиск и отбор кандидатов, назначение этапов  собеседований, отправка отказов и офферов кандидатам)
+✅ Monitoring all stages of a recruitment funnel. Depending on the vacancy, the recruitment funnel may include different stages
 
-❌ Возможность эффективной коммуникации с заказчиками и кандидатами (Назначение интервью, интеграции с календарем, почтовыми сервисами и мессенджерами)
+❌ Effective communication with hiring managers and candidates: integrations with calendars, email services, and messengers
 
-✅ Ролевая модель (HRBP, заказчики, рекрутеры, кандидаты и прочие)
+✅ Role model: HRBP, recruiters, hiring managers, and others
 
-✅ Ведение единой базы кандидатов и вакансий (Карточка кандидата, заявка на подбор)
+✅ Maintaining a unified database of candidates and job vacancies
 
-❌ Сбор статистики и формирование отчетности
+❌ Collecting statistics and generating reports
 
 ## Solution description
 
 https://www.notion.so/shtannikov/e74c4d3170824326b2f4f0f54bcf7da5
 
-## Локальный запуск системы
+## Running the system locally
 
-### Зависимости
+### Requirements
 
-Для локального запуска системы на компьютере должен быть установлен .NET SDK 7.0+ и Node.JS 18.16+
-Ссылки на установщики:
-- .NET SDK: https://dotnet.microsoft.com/en-us/download
-- Node.JS: https://nodejs.org/en
+- .NET SDK 7.0+ (https://dotnet.microsoft.com/en-us/download)
+- Node.JS 18.16+ (https://nodejs.org/en)
 
-### Инструкция
+### Manual
 
-Для запуска всех компонентов системы достаточно запустить бэкэнд-приложение. Оно само соберёт и подтянет фронтенд-приложение. Это сделано через переписанный процесс сборки, реализация лежит в `/backend/src/recruitment.csproj`
+For launching the system, simply run the backend app. It will automatically build and pull the frontend app. This is achieved through a rewritten build process, implemented in `/backend/src/recruitment.csproj`.
 
-1. Открыть консоль в папке с recruitment.csproj
-2. Выполнить команду `dotnet run --configuration Debug`
+1. Open terminal in `/backend` folder
+2. Run command `dotnet run --configuration Debug`
 
 ## System access
 
