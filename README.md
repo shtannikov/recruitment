@@ -36,7 +36,7 @@ https://www.notion.so/shtannikov/e74c4d3170824326b2f4f0f54bcf7da5
 
 For launching the system, simply run the backend app. It will automatically build and pull the frontend app. This is achieved through a rewritten build process, implemented in `/backend/src/recruitment.csproj`.
 
-1. Open terminal in `/backend` folder
+1. Open terminal in `/backend/src` folder
 2. Run command `dotnet run --configuration Debug`
 
 ## System access
