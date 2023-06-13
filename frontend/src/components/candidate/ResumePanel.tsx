@@ -60,7 +60,7 @@ export default function ResumePanel() {
               Employment: full-time, part-time, project-based work.
           </Typography>
           <Typography variant="body2" gutterBottom>
-              Work schedule: full-time, flexible schedule, remote work.
+              Work schedule: full day, flexible schedule, remote work.
           </Typography>
           <Typography variant="body2" gutterBottom>
               Desired commute time: doesn't matter.
