@@ -63,4 +63,4 @@ For easy switching between accounts, all accounts have the same password.
 
 ### Adding a new account
 
-Instructions and a live demo are available via the link in Notion: https://shtannikov.notion.site/ee324577c73743f08ba09695f5526589
+A manual is available via the link in Notion: https://shtannikov.notion.site/ee324577c73743f08ba09695f5526589
