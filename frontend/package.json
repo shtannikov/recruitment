@@ -4,8 +4,6 @@
   "private": true,
   "scripts": {
     "graphql-codegen": "graphql-codegen",
-    "realtime-graphql-codegen": "graphql-codegen -w",
-    "start": "rimraf ./build && react-scripts start",
     "build": "react-scripts build",
     "test": "jest"
   },
