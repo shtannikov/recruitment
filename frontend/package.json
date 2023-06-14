@@ -9,6 +9,13 @@
     "build": "react-scripts build",
     "test": "jest"
   },
+  "jest": {
+    "testMatch": ["<rootDir>/tests/**/*.(|tests).{ts,tsx}"],
+    "setupFilesAfterEnv": ["<rootDir>/tests/setupTests.ts"],
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "clearMocks": true
+  },
   "dependencies": {
     "@apollo/client": "^3.7.14",
     "@emotion/react": "^11.11.0",
@@ -56,13 +63,6 @@
   "resolutions": {
     "css-what": "^5.0.1",
     "nth-check": "^3.0.1"
-  },
-  "jest": {
-    "testMatch": ["<rootDir>/tests/**/*.(|tests).{ts,tsx}"],
-    "setupFilesAfterEnv": ["<rootDir>/tests/setupTests.ts"],
-    "preset": "ts-jest",
-    "testEnvironment": "jsdom",
-    "clearMocks": true
   },
   "eslintConfig": {
     "extends": [
