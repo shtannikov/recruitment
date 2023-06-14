@@ -8,7 +8,7 @@ interface ProviderProps {
 
 export const GraphQLClientProvider: FC<ProviderProps> = ({ children }) => {
     const [isAuthExpired, setIsAuthExpired] = React.useState(false);
-    const forceToLoginPage = () => window.location.reload();
+    const forceFallbackToLoginPage = () => window.location.reload();
 
     const apolloClient = new ApolloClient({
         uri: '/graphql',
@@ -33,8 +33,8 @@ export const GraphQLClientProvider: FC<ProviderProps> = ({ children }) => {
             new HttpLink({uri: '/graphql' })])
     });
     
-        if (isAuthExpired)
-            forceToLoginPage();
+    if (isAuthExpired)
+        forceFallbackToLoginPage();
 
     return (
         <ApolloProvider client={apolloClient}>
