@@ -75,7 +75,7 @@ export const Candidate: FC = () => {
   );
 
    useEffect( () => {
-     getCandidate().catch(console.error);
+     getCandidate();
    }, [getCandidate]);
 
   const { isLoading: isUserLoading, userRole } = useUserContext();

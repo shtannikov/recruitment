@@ -1,6 +1,12 @@
 import {NavigateFunction, useNavigate} from "react-router-dom";
 
-export class AppNavigation {
+interface IAppNavigation {
+    getFunnelUrl(id:number): string;
+    redirectToFunnel(id:number): void;
+    getCandidateUrl(id: number): string;
+}
+
+class AppNavigation implements IAppNavigation {
     private readonly navigate: NavigateFunction;
 
     constructor(navigateFunction: NavigateFunction) {
@@ -21,7 +27,7 @@ export class AppNavigation {
     }
 }
 
-export function useAppNavigation() {
+export function useAppNavigation() : IAppNavigation {
     const navigate = useNavigate();
     return new AppNavigation(navigate);
 }
