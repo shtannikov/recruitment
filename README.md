@@ -23,7 +23,7 @@ The system should include the following components:
 
 ## Solution description
 
-https://www.notion.so/shtannikov/e74c4d3170824326b2f4f0f54bcf7da5
+https://shtannikov.notion.site/e74c4d3170824326b2f4f0f54bcf7da5
 
 ## Running the system locally
 
