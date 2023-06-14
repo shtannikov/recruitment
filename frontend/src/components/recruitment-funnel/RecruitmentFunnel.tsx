@@ -48,14 +48,14 @@ export const RecruitmentFunnel: FC = () => {
         pageContext.setTitle(title);
     }, [data, pageContext]);
 
-    const [currentIndex, setCurrentIndex] = React.useState(0);
+    const [openedStageIndex, setOpenedStageIndex] = React.useState(0);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: any) => {
-        setCurrentIndex(newValue);
+    const openStage = (event: React.SyntheticEvent, newValue: any) => {
+        setOpenedStageIndex(newValue);
     };
 
-    const isPanelHidden = (panelIndex: number) => {
-        return currentIndex !== panelIndex;
+    const isStageHidden = (stageIndex: number) => {
+        return openedStageIndex !== stageIndex;
     };
 
     const accessibilityProps = (index: number) => {
@@ -70,19 +70,19 @@ export const RecruitmentFunnel: FC = () => {
     return loading
         ? (<Skeleton variant="rectangular" height={200} />)
         : (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={currentIndex} onChange={handleChange} aria-label="basic tabs example">
-                    {
-                        orderedStages?.map((stage, index) =>
-                            (<Tab label={stage.name} {...accessibilityProps(index)} />))
-                    }
-                </Tabs>
+            <Box sx={{ width: '100%' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs value={openedStageIndex} onChange={openStage} aria-label="basic tabs example">
+                        {
+                            orderedStages?.map((stage, index) =>
+                                (<Tab label={stage.name} {...accessibilityProps(index)} />))
+                        }
+                    </Tabs>
+                </Box>
+                {
+                    orderedStages?.map((stage, index) =>
+                        (<StageTab index={index} hidden={isStageHidden} stage={stage} />))
+                }
             </Box>
-            {
-                orderedStages?.map((stage, index) =>
-                    (<StageTab index={index} hidden={isPanelHidden} stage={stage} />))
-            }
-        </Box>
-    );
+        );
 }
