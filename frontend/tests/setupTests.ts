@@ -6,8 +6,8 @@ beforeEach(() => {
 
     jest.spyOn(useAppNavigation, 'useAppNavigation').mockImplementation(() => {
         return {
-            getCandidateUrl: (id) => `candidate/${id}`,
-            getFunnelUrl: (id) => `funnel/${id}`,
+            getCandidateUrl: (id) => `/candidate/${id}`,
+            getFunnelUrl: (id) => `/funnel/${id}`,
             redirectToFunnel: (_) => {}
         }
     });

@@ -10,6 +10,7 @@ import {FC} from "react";
 import {useAppNavigation} from "../../utils/useAppNavigation";
 import { NavLink } from 'react-router-dom';
 import {DateCalculator} from "../../utils/DateCalculator";
+import { default as QA } from "../../utils/QASelectorConstants";
 
 export interface Candidate {
     id: number;
@@ -30,7 +31,7 @@ export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =
 
     return (
         <TableContainer sx={{ minWidth: 400, maxWidth: 700 }} component={Paper}>
-            <Table data-testid="candidate list" aria-label="simple table">
+            <Table data-testid={QA.candidateList.container} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
@@ -52,16 +53,16 @@ export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =
                         )
                         .map((candidate) => (
                             <TableRow
-                                data-testid="candidate"
+                                data-testid={QA.candidateList.row}
                                 key={candidate.id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell data-testid="full name" component="th" scope="row">
+                                <TableCell data-testid={QA.candidateList.fullName} component="th" scope="row">
                                     <NavLink to={appNavigation.getCandidateUrl(candidate.id)} style={{ textDecoration: 'none' }}>
                                         {candidate.firstName} {candidate.middleName} {candidate.lastName}
                                     </NavLink>
                                 </TableCell>
-                                <TableCell data-testid="elapsed days in the stage" align="right">{candidate.elapsedDaysInCurrentStage}</TableCell>
+                                <TableCell data-testid={QA.candidateList.elapsedDays} align="right">{candidate.elapsedDaysInCurrentStage}</TableCell>
                             </TableRow>
                         )
                     )}
