@@ -15,7 +15,7 @@ import {FC, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { gql } from "../../__generated__";
 import { useLazyQuery } from "@apollo/client";
-import ResumePanel from './ResumePanel';
+import { ResumeList } from './ResumeList';
 import {usePageContext} from "../../utils/usePageContext";
 import {UserRole} from "../../__generated__/graphql";
 import {ChangeFunnelStageDialog} from "./ChangeFunnelStageDialog";
@@ -74,7 +74,7 @@ export const Candidate: FC = () => {
      { variables: { id: candidateId } }
   );
 
-   useEffect( () => {
+   useEffect(() => {
      getCandidate();
    }, [getCandidate]);
 
@@ -129,7 +129,7 @@ export const Candidate: FC = () => {
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
-                <ResumePanel />
+                <ResumeList />
               </TableCell>
             </TableRow>
           </TableBody>

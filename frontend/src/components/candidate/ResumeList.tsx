@@ -1,58 +1,38 @@
 import * as React from 'react';
+import {FC} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import {ResumeTab} from "./ResumeTab";
 
-interface TabProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
+export const ResumeList: FC = () => {
+    const [openedResumeIndex, setOpenedResumeIndex] = React.useState(0);
 
-function ResumeTab(props: TabProps) {
-  const { children, value, index, ...other } = props;
+    const openResume = (event: React.SyntheticEvent, newValue: any) => {
+        setOpenedResumeIndex(newValue);
+    };
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-export default function ResumePanel() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+    const isResumeHidden = (resumeIndex: number) => {
+        return openedResumeIndex !== resumeIndex;
+    };
 
     const accessibilityProps = (index: number) => {
         return {
-            id: `simple-tab-${index}`,
-            'aria-controls': `simple-tabpanel-${index}`,
+            id: `resume-tab-${index}`,
+            'aria-controls': `resume-tabpanel-${index}`,
         };
     }
 
-  return (
+    return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tabs value={openedResumeIndex} onChange={openResume} aria-label="basic tabs example">
           <Tab label="LinkedIn CV" {...accessibilityProps(0)} />
           <Tab label="PDF CV" {...accessibilityProps(1)} />
         </Tabs>
       </Box>
-      <ResumeTab value={value} index={0}>
+      <ResumeTab index={0} hidden={isResumeHidden}>
           <Typography variant="h6" gutterBottom>
               Fullstack developer
           </Typography>
@@ -66,11 +46,11 @@ export default function ResumePanel() {
               Desired commute time: doesn't matter.
           </Typography>
       </ResumeTab>
-      <ResumeTab value={value} index={1}>
+      <ResumeTab index={1} hidden={isResumeHidden}>
         <object data="http://africau.edu/images/default/sample.pdf" type="application/pdf" width="800px" height="600px">
-            <p>Alternative text - include a link <a href="http://africau.edu/images/default/sample.pdf">to the PDF!</a></p>
+            <p><a href="http://africau.edu/images/default/sample.pdf">Open PDF file</a></p>
         </object>
       </ResumeTab>
     </Box>
-  );
+    );
 }
