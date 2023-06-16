@@ -88,15 +88,18 @@ export const Candidate: FC = () => {
           <TableBody>
             <TableRow>
               <TableCell component="th" scope="row">
-                <List sx={{ width: '100%', minWidth: 400, maxWidth: 700, bgcolor: 'background.paper' }}>
+                <List sx={{ minWidth: 400, maxWidth: 700 }}>
                   <ListItem>
-                    <ListItemAvatar sx={{ pr: 4 }}>
+                    <ListItemAvatar sx={{ paddingRight: 4 }}>
                       <Avatar
                           sx={{ width: 100, height: 100 }}
                       />
                     </ListItemAvatar>
-                    <ListItemText primary={`${candidate?.firstName} ${candidate?.middleName} ${candidate?.lastName}`}>
-                    </ListItemText>
+                    <ListItemText primary={
+                      candidate
+                          ? `${candidate.firstName} ${candidate.middleName} ${candidate.lastName}`
+                          : 'Unknown'
+                    }/>
                   </ListItem>
                 </List>
               </TableCell>
@@ -109,10 +112,9 @@ export const Candidate: FC = () => {
                         primary={candidate?.currentStage.funnel.vacancy.name}
                         secondary={candidate?.currentStage.name} />
                     {
-                      !isUserLoading 
-                        && userRole !== UserRole.HiringManager 
-                        && candidate
+                      candidate
                         && <ChangeFunnelStageDialog
+                            userRole={userRole}
                             candidateId={candidateId}
                             currentStage={candidate?.currentStage}
                             updateCandidate={() => getCandidate()}
@@ -120,8 +122,7 @@ export const Candidate: FC = () => {
                     }
                   </ListItem>
                   { 
-                    candidate 
-                      && candidate.feedbacks.length > 0 
+                    candidate
                       && <FeedbackList feedbacks={candidate.feedbacks} /> 
                   }
                 </List>

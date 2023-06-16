@@ -9,6 +9,7 @@ import {Alert, DialogContentText, InputLabel, MenuItem, Select, SelectChangeEven
 import {ChangeEvent, FC, useMemo} from 'react';
 import {gql} from "../../__generated__";
 import {useMutation} from "@apollo/client";
+import {UserRole} from "../../__generated__/graphql";
 
 const MOVE_TO_NEXT_STAGE = gql(`
     mutation MoveToNextStage($candidateId: Int!, $nextStageId: Int!, $motivation: String!) {
@@ -27,6 +28,7 @@ const MOVE_TO_NEXT_STAGE = gql(`
 `);
 
 interface Props {
+    userRole: UserRole | undefined,
     candidateId: number,
     currentStage: {
         name: string,
@@ -45,7 +47,7 @@ interface Props {
     updateCandidate: () => void
 }
 
-export const ChangeFunnelStageDialog: FC<Props> = ({ candidateId, currentStage, updateCandidate }) => {
+export const ChangeFunnelStageDialog: FC<Props> = ({ userRole, candidateId, currentStage, updateCandidate }) => {
     const [dialogOpen, setDialogOpen] = React.useState(false);
     const openDialog = () => {
         setDialogOpen(true);
@@ -87,7 +89,7 @@ export const ChangeFunnelStageDialog: FC<Props> = ({ candidateId, currentStage, 
             .filter(s => s.order > currentStage.order);
     }, [currentStage]);
 
-    return nextStages.length === 0
+    return !userRole || userRole === UserRole.HiringManager || nextStages.length === 0
         ? null
         : (<>
             <Button variant="contained" onClick={openDialog}>Change stage</Button>

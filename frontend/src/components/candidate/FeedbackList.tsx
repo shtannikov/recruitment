@@ -18,8 +18,9 @@ interface Props {
 }
 
 export const FeedbackList: FC<Props> = ({ feedbacks }) => {
-    return (
-        <TableContainer component={Paper}>
+    return feedbacks.length === 0
+        ? null
+        : (<TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -47,6 +48,5 @@ export const FeedbackList: FC<Props> = ({ feedbacks }) => {
                     ))}
                 </TableBody>
             </Table>
-        </TableContainer>
-    );
+        </TableContainer>);
 }
