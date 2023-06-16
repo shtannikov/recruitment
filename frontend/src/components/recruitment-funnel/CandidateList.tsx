@@ -31,7 +31,7 @@ export const CandidateList: FC<{ candidates: Candidate[] }> = ({ candidates }) =
 
     return (
         <TableContainer sx={{ minWidth: 400, maxWidth: 700 }} component={Paper}>
-            <Table data-testid={QA.candidateList.container} aria-label="simple table">
+            <Table data-testid={QA.candidateList.body} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>

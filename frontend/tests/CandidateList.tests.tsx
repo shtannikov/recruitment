@@ -28,7 +28,7 @@ describe('candidate list', () => {
         expect(renderedElapsedDays.textContent).toBe('1');
     });
 
-    test('sort candidates from max to min elapsed days', () => {
+    test('candidates are sorted from max to min elapsed days', () => {
         const candidates: Candidate[] = [
             {
                 id: 1,
@@ -57,7 +57,7 @@ describe('candidate list', () => {
         renderWithRouter(<CandidateList candidates={candidates}/>);
 
 
-        const candidateList = screen.getByTestId(QA.candidateList.container);
+        const candidateList = screen.getByTestId(QA.candidateList.body);
         const candidateRows = within(candidateList).getAllByTestId(QA.candidateList.row);
         expect(candidateRows).toHaveLength(3);
 

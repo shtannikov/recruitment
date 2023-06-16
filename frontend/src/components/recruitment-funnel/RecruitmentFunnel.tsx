@@ -9,8 +9,9 @@ import {useParams} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {Skeleton} from "@mui/material";
 import {usePageContext} from "../../utils/usePageContext";
+import { default as QA } from "../../utils/QASelectorConstants";
 
-const GET_FUNNEL = gql(`
+export const GET_FUNNEL = gql(`
     query GetFunnel($id: Int!) {
       recruitmentFunnel(id: $id) {
         vacancy {
@@ -60,28 +61,36 @@ export const RecruitmentFunnel: FC = () => {
 
     const accessibilityProps = (index: number) => {
         return {
-            id: `simple-tab-${index}`,
-            'aria-controls': `simple-tabpanel-${index}`,
+            key: `stage-tab-${index}`,
+            id: `stage-tab-${index}`,
+            'aria-controls': `stage-tabpanel-${index}`,
         };
     }
     
-    const orderedStages = data?.recruitmentFunnel?.stages;
+    const stageList = data?.recruitmentFunnel?.stages;
 
     return loading
-        ? (<Skeleton variant="rectangular" height={200} />)
+        ? (<Skeleton data-testid={QA.funnel.skeleton} variant="rectangular" height={200} />)
         : (
-            <Box sx={{ width: '100%' }}>
+            <Box data-testid={QA.funnel.body} sx={{ width: '100%' }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <Tabs value={openedStageIndex} onChange={openStage} aria-label="basic tabs example">
                         {
-                            orderedStages?.map((stage, index) =>
-                                (<Tab label={stage.name} {...accessibilityProps(index)} />))
+                            stageList?.map((stage, index) =>
+                                (<Tab
+                                    data-testid={QA.funnel.stage.header}
+                                    label={stage.name}
+                                    {...accessibilityProps(index)} />))
                         }
                     </Tabs>
                 </Box>
                 {
-                    orderedStages?.map((stage, index) =>
-                        (<StageTab index={index} hidden={isStageHidden} stage={stage} />))
+                    stageList?.map((stage, index) =>
+                        (<StageTab
+                            key={`stage-tabpanel-${index}`}
+                            index={index}
+                            hidden={isStageHidden}
+                            stage={stage} />))
                 }
             </Box>
         );
