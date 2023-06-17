@@ -17,7 +17,6 @@ import { gql } from "../../__generated__";
 import { useLazyQuery } from "@apollo/client";
 import { ResumeList } from './ResumeList';
 import {usePageContext} from "../../utils/usePageContext";
-import {UserRole} from "../../__generated__/graphql";
 import {ChangeFunnelStageDialog} from "./ChangeFunnelStageDialog";
 import {useUserContext} from "../../utils/UserContext";
 import {FeedbackList} from "./FeedbackList";

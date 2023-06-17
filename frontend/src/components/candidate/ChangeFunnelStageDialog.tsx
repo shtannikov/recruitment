@@ -10,8 +10,9 @@ import {ChangeEvent, FC, useMemo} from 'react';
 import {gql} from "../../__generated__";
 import {useMutation} from "@apollo/client";
 import {UserRole} from "../../__generated__/graphql";
+import { default as QA } from "../../utils/QASelectorConstants";
 
-const MOVE_TO_NEXT_STAGE = gql(`
+export const MOVE_TO_NEXT_STAGE = gql(`
     mutation MoveToNextStage($candidateId: Int!, $nextStageId: Int!, $motivation: String!) {
       candidates {
         moveToNextFunnelStage(
@@ -31,12 +32,8 @@ interface Props {
     userRole: UserRole | undefined,
     candidateId: number,
     currentStage: {
-        name: string,
         order: number,
         funnel: {
-            vacancy: {
-                name: string,
-            },
             stages: {
                 id: number,
                 order: number,
@@ -92,21 +89,41 @@ export const ChangeFunnelStageDialog: FC<Props> = ({ userRole, candidateId, curr
     return !userRole || userRole === UserRole.HiringManager || nextStages.length === 0
         ? null
         : (<>
-            <Button variant="contained" onClick={openDialog}>Change stage</Button>
-            <Dialog open={dialogOpen} onClose={closeDialog}>
+            <Button
+                data-testid={QA.candidate.changeStage.openButton}
+                variant="contained"
+                onClick={openDialog}>
+                    Change stage
+            </Button>
+            <Dialog
+                data-testid={QA.candidate.changeStage.dialog}
+                open={dialogOpen}
+                onClose={closeDialog}>
+
                 <DialogTitle>Stage change</DialogTitle>
                 <DialogContent>
                     {
                         isValidationError && !comment &&
-                        (<Alert severity="error" sx={{ marginBottom: 1 }}>Comment can't be empty</Alert>)
+                        (<Alert
+                            data-testid={QA.candidate.changeStage.error}
+                            severity="error"
+                            sx={{ marginBottom: 1 }}>
+                                Comment can not be empty
+                        </Alert>)
                     }
                     {
                         isValidationError && !selectedNextStageId &&
-                            (<Alert severity="error" sx={{ marginBottom: 1 }}>Stage must be selected</Alert>)
+                            (<Alert
+                                data-testid={QA.candidate.changeStage.error}
+                                severity="error"
+                                sx={{ marginBottom: 1 }}>
+                                    Stage must be selected
+                            </Alert>)
                     }
 
                     <DialogContentText>Comment about the candidate</DialogContentText>
                     <TextField
+                        data-testid={QA.candidate.changeStage.comment}
                         id="comment"
                         multiline
                         minRows={3}
@@ -118,21 +135,23 @@ export const ChangeFunnelStageDialog: FC<Props> = ({ userRole, candidateId, curr
 
                     <InputLabel id="stage-label">Stage</InputLabel>
                     <Select
+                        data-testid={QA.candidate.changeStage.nextStages}
                         labelId="stage-label"
                         id="stage-select"
-                        value={selectedNextStageId?.toString()}
+                        value={selectedNextStageId?.toString() ?? ''}
                         onChange={selectNextStage}
                         sx={{ minWidth: 200 }}
                     >
                         {nextStages.map((stage) => (
-                            <MenuItem value={stage.id}>{stage.name}</MenuItem>
+                            <MenuItem key={`stage-${stage.id}`} value={stage.id}>{stage.name}</MenuItem>
                         ))}
                     </Select>
                     <DialogActions>
                         <Button onClick={closeDialog}>Close</Button>
-                        <Button onClick={save}>Change</Button>
+                        <Button data-testid={QA.candidate.changeStage.saveButton} onClick={save}>Change</Button>
                     </DialogActions>
                 </DialogContent>
+
             </Dialog>
         </>
     );
