@@ -11,8 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AuthorizationDbContext>(options =>
     options.UseSqlite(connectionString));
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(connectionString));
+builder.Services.AddDbContext<AppDbContext>();
 
 builder.Services.AddAuthentication(o =>
     {
@@ -37,7 +36,7 @@ builder.Services.AddIdentityServer()
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.SameSite = SameSiteMode.Strict;
-    
+
     options.Events.OnRedirectToLogin = context =>
     {
         if (context.Request.Path == "/graphql" && context.Request.Method == "POST")
