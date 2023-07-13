@@ -1,6 +1,6 @@
 ## Demo
 
-![demo](https://github.com/shtannikov/recruitment/assets/31800676/72b6db7a-8140-4e1c-b8a7-86b6ff1a7adf)
+https://github.com/shtannikov/recruitment/assets/31800676/f2256166-b886-42f5-bc02-dffb67192084
 
 
 ## Hackathon task description
