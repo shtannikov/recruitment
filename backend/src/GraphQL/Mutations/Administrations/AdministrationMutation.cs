@@ -33,7 +33,8 @@ public class AdministrationMutation
 
     private static CreationResponse CreateErrorResponse(IEnumerable<IdentityError> errors)
     {
-        var validationErrors = errors.Select(e => e.Description)
+        var validationErrors = errors
+            .Select(e => e.Description)
             .ToArray();
         return CreationResponse.CreateErrorResponse(validationErrors);
     }

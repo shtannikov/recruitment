@@ -7,7 +7,7 @@ public class Query
     public IQueryable<Vacancy> GetActiveVacancies([Service] AppDbContext dbContext)
         => dbContext.Vacancies;
 
-    public UserSettingsQuery UserSettings => new UserSettingsQuery();
+    public UserSettingsQuery UserSettings => new();
 
     public Funnel? GetRecruitmentFunnel(int id, [Service] AppDbContext dbContext) =>
         dbContext.Funnels

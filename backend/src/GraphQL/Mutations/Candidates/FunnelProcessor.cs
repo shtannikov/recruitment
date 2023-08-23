@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using recruitment.Data;
 
 namespace recruitment.GraphQL;
@@ -40,7 +39,7 @@ public class FunnelProcessor : IFunnelProcessor
             .SingleOrDefault(c => c.Id == candidateId);
         if (candidate == null)
             validationErrors.Add($"Candidate with Id {candidateId} is not found");
-        
+
         var nextStage = _dbContext.FunnelStages
             .SingleOrDefault(s => s.Id == nextStageId);
         if (nextStage == null)
