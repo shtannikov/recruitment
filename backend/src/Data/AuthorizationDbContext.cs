@@ -7,8 +7,19 @@ namespace recruitment.Data;
 
 public class AuthorizationDbContext : ApiAuthorizationDbContext<ApplicationUser>
 {
-    public AuthorizationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
+    private readonly IConfiguration _configuration;
+
+    public AuthorizationDbContext(
+        DbContextOptions options,
+        IOptions<OperationalStoreOptions> operationalStoreOptions,
+        IConfiguration configuration)
         : base(options, operationalStoreOptions)
     {
+        _configuration = configuration;
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+    {
+        options.UseSqlite(_configuration.GetConnectionString("DefaultConnection"));
     }
 }
