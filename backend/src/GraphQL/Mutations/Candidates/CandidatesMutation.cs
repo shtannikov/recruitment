@@ -15,10 +15,13 @@ public class CandidatesMutation
         int nextStageId,
         string motivation)
     {
-        var authorIdentity = httpContextAccessor.HttpContext
-            !.User
-            .Identity;
-        var author = await userManager.FindByNameAsync(authorIdentity!.Name!);
+        var authorName = httpContextAccessor.HttpContext
+            ?.User
+            .Identity
+            ?.Name;
+        if (authorName is null)
+            throw new InvalidOperationException("Can not get user identity");
+        var author = await userManager.FindByNameAsync(authorName);
 
         var response = funnelProcessor.MoveToNextStage(
             candidateId,
