@@ -1,2 +1,0 @@
-- Command to generate code-first migration: `dotnet ef migrations add {MIGRATION_NAME} --context AppDbContext`
-- Command to apply code-first migration: `dotnet ef database update --context AppDbContext`
