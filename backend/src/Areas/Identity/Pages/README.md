@@ -1,0 +1,1 @@
+This folder contains scaffolded files for `Login` page.  Nothing was changed except one file - `Login.cshtml`, this one was drastically cleaned up to keep only the core scenario implementation.
