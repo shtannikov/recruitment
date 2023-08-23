@@ -26,7 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+        <None Update="Areas\Data\app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
     </ItemGroup>
     <ItemGroup>
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**">
