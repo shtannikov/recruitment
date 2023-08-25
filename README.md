@@ -1,29 +1,16 @@
-## Demo
+## System description
+
+This is a system for managing a unified database of job vacancies and candidates.
+
+Implemented features:
+- Flexible recruitment funnel: depending on the vacancy, the recruitment funnel may include different stages
+- Role-centric UI: depending on the role, the system opens up different opportunities
+
+Implementation details is described in [this notion articles](https://shtannikov.notion.site/e74c4d3170824326b2f4f0f54bcf7da5)
+
+### Demo
 
 https://github.com/shtannikov/recruitment/assets/31800676/f2256166-b886-42f5-bc02-dffb67192084
-
-
-## Hackathon task description
-
-Automate the entire cycle of candidate selection for a job vacancy: from the moment of application to the onboarding of a new employee.
-
-The system should include the following components:
-
-❌ Integrations with various sourcing channels such as job boards, social media, referrals, and career sites.
-
-✅ Monitoring all stages of a recruitment funnel. Depending on the vacancy, the recruitment funnel may include different stages
-
-❌ Effective communication with hiring managers and candidates: integrations with calendars, email services, and messengers
-
-✅ Role model: HRBP, recruiters, hiring managers, and others
-
-✅ Maintaining a unified database of candidates and job vacancies
-
-❌ Collecting statistics and generating reports
-
-## Solution description
-
-https://shtannikov.notion.site/e74c4d3170824326b2f4f0f54bcf7da5
 
 ## Running the system locally
 
@@ -39,17 +26,11 @@ For launching the system, simply run the backend app. It will automatically buil
 1. Open terminal in `/backend/src` folder
 2. Run command `dotnet run --configuration Debug`
 
-## System access
-
-### Production
-
-~~Link to the production version: http://158.160.63.240~~ 
-
-UPD: production turned off
+### System access
 
 ### Prepared accounts
 
-Depending on the role, the platform opens up different opportunities. In order to verify this, the system has prepared accounts with different roles.
+Depending on the role, the system opens up different opportunities. In order to verify this, the system has prepared accounts with different roles.
 
 Here they are:
 
