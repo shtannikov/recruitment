@@ -1,10 +1,10 @@
 ## System description
 
-This is a system for managing a unified database of job vacancies and candidates.
+This system is designed for the management of a unified database of job vacancies and candidate profiles.
 
 Implemented features:
-- Flexible recruitment funnel: depending on the vacancy, the recruitment funnel may include different stages
-- Role-centric UI: depending on the role, the system opens up different opportunities
+- Flexible recruitment funnel: depending on the vacancy, the recruitment funnel can include different stages
+- Role-centric UI: depending on the role, the system provides different opportunities
 
 Implementation details is described in [this notion articles](https://shtannikov.notion.site/e74c4d3170824326b2f4f0f54bcf7da5)
 
