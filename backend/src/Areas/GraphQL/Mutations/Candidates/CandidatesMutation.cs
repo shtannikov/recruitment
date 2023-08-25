@@ -1,4 +1,3 @@
-using HotChocolate.Authorization;
 using Microsoft.AspNetCore.Identity;
 using recruitment.Data;
 

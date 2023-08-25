@@ -8,7 +8,8 @@ public static class GraphQLAppBuilderExtensions
             .AddGraphQLServer()
             .AddAuthorization()
             .AddQueryType<Query>()
-            .AddMutationType<Mutation>();
+            .AddMutationType<Mutation>()
+            .AddProjections();
 
         AddInternalServices(builder);
 

@@ -10,7 +10,7 @@ public class Candidate
 
     public DateTime StageEntranceDateTimeUtc { get; set; }
     public int CurrentStageId { get; set; }
-    public virtual FunnelStage CurrentStage { get; set; }
+    public FunnelStage CurrentStage { get; set; }
 
-    public virtual ICollection<Feedback> Feedbacks { get; set; }
+    public ICollection<Feedback> Feedbacks { get; set; }
 }

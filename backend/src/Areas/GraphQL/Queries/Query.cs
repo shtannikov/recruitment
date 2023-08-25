@@ -4,16 +4,19 @@ namespace recruitment.GraphQL;
 
 public class Query
 {
+    public UserSettingsQuery UserSettings => new();
+
+    [UseProjection]
     public IQueryable<Vacancy> GetActiveVacancies([Service] AppDbContext dbContext)
         => dbContext.Vacancies;
 
-    public UserSettingsQuery UserSettings => new();
+    [UseFirstOrDefault]
+    [UseProjection]
+    public IQueryable<Funnel> GetRecruitmentFunnel(int id, [Service] AppDbContext dbContext)
+        => dbContext.Funnels;
 
-    public Funnel? GetRecruitmentFunnel(int id, [Service] AppDbContext dbContext) =>
-        dbContext.Funnels
-            .SingleOrDefault(f => f.Id == id);
-
-    public Candidate? GetCandidate(int id, [Service] AppDbContext dbContext) =>
-        dbContext.Candidates
-            .SingleOrDefault(c => c.Id == id);
+    [UseFirstOrDefault]
+    [UseProjection]
+    public IQueryable<Candidate> GetCandidate(int id, [Service] AppDbContext dbContext)
+        => dbContext.Candidates;
 }
