@@ -30,7 +30,7 @@ For launching the system, simply run the backend app. It will automatically buil
 
 ### Prepared accounts
 
-Depending on the role, the system opens up different opportunities. In order to verify this, the system has prepared accounts with different roles.
+Depending on the role, the system provides different opportunities. In order to verify this, the system has prepared accounts with different roles.
 
 Here they are:
 
