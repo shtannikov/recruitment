@@ -1,4 +1,4 @@
-export default {
+const QA = {
     candidateList: {
         body: "candidate list",
         row: "candidate",
@@ -24,3 +24,5 @@ export default {
         }
     }
 }
+
+export default QA;

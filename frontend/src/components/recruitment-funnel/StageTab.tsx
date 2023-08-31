@@ -1,8 +1,7 @@
 import {FC} from "react";
 import Box from "@mui/material/Box";
 import {Candidate, CandidateList} from "./CandidateList";
-import * as React from "react";
-import { default as QA } from "../../utils/QASelectorConstants";
+import QA from "../../utils/QASelectorConstants";
 
 interface Stage {
     id: number;

@@ -10,7 +10,7 @@ import {FC} from "react";
 import {useAppNavigation} from "../../utils/useAppNavigation";
 import { NavLink } from 'react-router-dom';
 import {DateCalculator} from "../../utils/DateCalculator";
-import { default as QA } from "../../utils/QASelectorConstants";
+import QA from "../../utils/QASelectorConstants";
 
 export interface Candidate {
     id: number;

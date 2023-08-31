@@ -2,7 +2,7 @@ import {describe, test } from '@jest/globals';
 import {screen, within} from "@testing-library/react";
 import {Candidate, CandidateList} from "../src/components/recruitment-funnel/CandidateList";
 import renderWithRouter from "./renderWithRouter";
-import { default as QA } from "../src/utils/QASelectorConstants";
+import QA from "../src/utils/QASelectorConstants";
 
 describe('candidate list', () => {
     test('candidate has correct computed fields', () => {

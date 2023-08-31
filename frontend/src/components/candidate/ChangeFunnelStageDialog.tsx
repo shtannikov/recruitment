@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState} from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -10,7 +10,7 @@ import {ChangeEvent, FC, useMemo} from 'react';
 import {gql} from "../../__generated__";
 import {useMutation} from "@apollo/client";
 import {UserRole} from "../../__generated__/graphql";
-import { default as QA } from "../../utils/QASelectorConstants";
+import QA from "../../utils/QASelectorConstants";
 
 export const MOVE_TO_NEXT_STAGE = gql(`
     mutation MoveToNextStage($candidateId: Int!, $nextStageId: Int!, $motivation: String!) {
@@ -45,7 +45,7 @@ interface Props {
 }
 
 export const ChangeFunnelStageDialog: FC<Props> = ({ userRole, candidateId, currentStage, updateCandidate }) => {
-    const [dialogOpen, setDialogOpen] = React.useState(false);
+    const [dialogOpen, setDialogOpen] = useState(false);
     const openDialog = () => {
         setDialogOpen(true);
     };
@@ -53,9 +53,9 @@ export const ChangeFunnelStageDialog: FC<Props> = ({ userRole, candidateId, curr
         setDialogOpen(false);
     };
 
-    const [selectedNextStageId, setSelectedNextStageId] = React.useState<number | undefined>(undefined);
-    const [comment, setComment] = React.useState<string | undefined>(undefined);
-    const [isValidationError, setIsValidationError] = React.useState(false);
+    const [selectedNextStageId, setSelectedNextStageId] = useState<number | undefined>(undefined);
+    const [comment, setComment] = useState<string | undefined>(undefined);
+    const [isValidationError, setIsValidationError] = useState(false);
 
     const selectNextStage = (event: SelectChangeEvent) => {
         setSelectedNextStageId(Number(event.target.value));

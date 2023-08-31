@@ -9,7 +9,7 @@ import {useParams} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {Skeleton} from "@mui/material";
 import {usePageContext} from "../../utils/usePageContext";
-import { default as QA } from "../../utils/QASelectorConstants";
+import QA from "../../utils/QASelectorConstants";
 
 export const GET_FUNNEL = gql(`
     query GetFunnel($id: Int!) {

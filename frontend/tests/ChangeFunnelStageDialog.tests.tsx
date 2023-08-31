@@ -1,7 +1,7 @@
 import {describe, test} from '@jest/globals';
 import {fireEvent, render, screen, within} from "@testing-library/react";
 import {ChangeFunnelStageDialog, MOVE_TO_NEXT_STAGE} from "../src/components/candidate/ChangeFunnelStageDialog";
-import {default as QA} from "../src/utils/QASelectorConstants";
+import QA from "../src/utils/QASelectorConstants";
 import {MockedProvider} from "@apollo/client/testing";
 import {UserRole} from "../src/__generated__/graphql";
 

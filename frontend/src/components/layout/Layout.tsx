@@ -1,7 +1,6 @@
 import React, {FC, ReactNode} from 'react';
-import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
-import {Grid} from "@mui/material";
+import {Container, Grid} from "@mui/material";
 import {Sidebar} from "../sidebar/Sidebar";
 
 interface LayoutProps {
@@ -17,7 +16,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                   <Sidebar/>
               </Grid>
               <Grid item xs={9} minWidth={"600px"}>
-                  <Container tag="main">
+                  <Container>
                       {children}
                   </Container>
               </Grid>

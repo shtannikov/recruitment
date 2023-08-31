@@ -77,7 +77,7 @@ export const Candidate: FC = () => {
      getCandidate();
    }, [getCandidate]);
 
-  const { isLoading: isUserLoading, userRole } = useUserContext();
+  const { userRole } = useUserContext();
 
   const candidate = candidateData?.candidate;
 

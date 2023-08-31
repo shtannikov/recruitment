@@ -3,7 +3,7 @@ import {screen, render, within, fireEvent} from "@testing-library/react";
 import {GET_FUNNEL, RecruitmentFunnel} from "../src/components/recruitment-funnel/RecruitmentFunnel";
 import {MockedProvider} from "@apollo/client/testing";
 import * as reactRouter from "react-router";
-import { default as QA } from "../src/utils/QASelectorConstants";
+import QA from "../src/utils/QASelectorConstants";
 
 describe('recruitment funnel',  () => {
     const funnelId = 3;
