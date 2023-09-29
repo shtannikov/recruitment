@@ -1,10 +1,6 @@
 name: Test Backend
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'backend/**'
   pull_request:
     types: [ opened, reopened, synchronize ]
     paths:
@@ -24,11 +20,6 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-        cache: true
 
-    - name: Restore dependencies
-      run: dotnet restore --locked-mode
-    - name: Build
-      run: dotnet build --configuration Release --output ./bin --no-restore
     - name: Test
-      run: dotnet test ./bin/tests.dll
+      run: dotnet test --configuration Release

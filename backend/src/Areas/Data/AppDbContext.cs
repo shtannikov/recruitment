@@ -25,7 +25,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Vacancy> Vacancies { get; set; }
     public DbSet<Funnel> Funnels  { get; set; }
-    public DbSet<FunnelStage> FunnelStages { get; set; }
-    public DbSet<Candidate> Candidates { get; set; }
-    public DbSet<Feedback> Feedbacks { get; set; }
+    public virtual DbSet<FunnelStage> FunnelStages { get; set; }
+    public virtual DbSet<Candidate> Candidates { get; set; }
+    public virtual DbSet<Feedback> Feedbacks { get; set; }
 }
