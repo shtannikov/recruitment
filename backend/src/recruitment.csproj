@@ -7,7 +7,6 @@
         <SpaRoot>..\..\frontend\</SpaRoot>
         <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
         <ImplicitUsings>enable</ImplicitUsings>
-        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
 
     <ItemGroup>
